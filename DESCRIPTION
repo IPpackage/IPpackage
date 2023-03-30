@@ -1,0 +1,11 @@
+Package: IPpackage
+Type: Package
+Title: IPpackage
+Version: 0.0.0
+Authors@R: c(person("Felipe", "Rocha", email = "felipe.rocha@innovarepesquisa.onmicrosoft.com", role = c("aut", "cre")),
+             person("Rafael", "Peixoto", email = "peixoto.rafael@outlook.com", role = c("ctb") ))
+Description: Functions.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.0
