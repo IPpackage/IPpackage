@@ -2,7 +2,7 @@
 % Please edit documentation in R/round_excel_decimais.R
 \name{round_excel_decimais}
 \alias{round_excel_decimais}
-\title{round_excel}
+\title{round_excel_decimais}
 \usage{
 round_excel_decimais(y, n_depois_ponto = 0, ponto = ",")
 }

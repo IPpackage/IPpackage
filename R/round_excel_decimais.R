@@ -1,4 +1,4 @@
-#' @title round_excel
+#' @title round_excel_decimais
 #' @name round_excel_decimais
 #'
 #' @description Muitas vezes, precisamos representar os resultados de um Excel em
@@ -49,4 +49,3 @@ round_excel_decimais<-function(y,n_depois_ponto=0,ponto=","){
   rm(x,i,y,xx,n_depois_ponto,o_q_tem,n_tem)%>%suppressWarnings()
   return(xxx)
 }
-
