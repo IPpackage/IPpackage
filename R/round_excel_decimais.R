@@ -1,13 +1,17 @@
 #' @title round_excel_decimais
 #' @name round_excel_decimais
 #'
-#' @description Muitas vezes, precisamos representar os resultados de um Excel em
-#'  diferentes formas: tabelas em PNG, gráficos,... mas esbarramos com um pequeno
-#'  problema: R e Excel utilizam métodos diferentes de arredondamento. Então, o
-#'  que no excel vida 0.5, por exemplo, as saídas do R retornam 0.6.
+#' @description Ah acaso em que, além de precisarmos manter a metodologia de
+#' arredondamento do Excel, precisamos imprimir o mesmo número de casas decimais.
+#' Nesses casos, a função IPpackage::round_excel_decimais se apresenta como uma ótima solução.
 #'
-#'  Para resolver esse problema, desenvolvemos a função round_excel, que arredonda
-#'  os números seguindo a mesma metodologia que o Excel.
+#' Tanto a função padrão do R (round) quanto a IPpackage::round_excel (do pacote)
+#' suprimem os zeros à direta: 1.0000 vira 1 em ambas
+#'
+#' Utilizando a função round_excel_decimais, além de mantermos o número de casas
+#' decimais, podemos personalizar o termo de separação (vírgula, ponto, ponto e vírgula,…).
+#'
+#' Obs.: a função funciona tanto para números quanto para vetores de números.
 #'
 #' @param y número ou vetor contendo números
 #' @param n_depois_ponto número de casas decimais
@@ -17,6 +21,25 @@
 #'
 #' @import stringr
 #' @import dplyr
+#'
+#' @examples
+#'
+#' ##Número; nenhuam casa decimal; vírgula e ponto
+#' IPpackage::round_excel_decimais(4.45,0,",")
+#' IPpackage::round_excel_decimais(4.45,0,".")
+#' ##Número; 5 casas decimais; vírgula e ponto
+#' IPpackage::round_excel_decimais(4.45,5,",")
+#' IPpackage::round_excel_decimais(4.45,5,".")
+#' ##Vetor; 4 casa decimal; vírgula e ponto
+#' IPpackage::round_excel_decimais(c(4.45,-4.45,855.5555454,4,NA,86.542),4,",")
+#' IPpackage::round_excel_decimais(c(4.45,-4.45,855.5555454,4,NA,86.542),4,".")
+#' ##Coluna de um data.frame
+#' set.seed(42)
+#' df=data.frame(casa=c(rep('A',5),rep('B',5)),renda_familiar=runif(10,0,5000));df[1,2]<-NA;df[5,2]<-1
+#' #Arredondando a renda em 2 casas decimais
+#' df$rf_arred=IPpackage::round_excel(df$renda_familiar,2)
+#' df$rf_arred2=round_excel_decimais(df$renda_familiar,2,",")
+#' df
 #'
 #' @export
 #'
