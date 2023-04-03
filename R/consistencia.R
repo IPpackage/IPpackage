@@ -93,26 +93,30 @@ consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FA
       if(all(show!=FALSE)&log_consistenia[nrow(log_consistenia),4]!="OK"){
         cat(crayon::green$bold("--------------show--------------\n"))
 
-        print(bd%>%dplyr::select(all_of(show),entrou,base)%>%dplyr::filter(entrou!=base)%>%data.frame())
+        print(bd%>%dplyr::select(dplyr::all_of(show),entrou,base)%>%dplyr::filter(entrou!=base)%>%data.frame())
 
       }
       return(log_consistenia%>%unique())
     }
     if(length(vars)>1){
       if(is.null(nome)){nome=paste0("MRG-",vars[1]);message(paste0("Como nome=NULL, atribuimos o nome '",nome,"'"))}
-      cat(crayon::green$bold("==============MRG - ")%+% crayon::green$bold(nome)%+%crayon::green$green("==============\n"))
+      p=paste0("==============MRG - ",nome,"==============\n")
+      cat(crayon::green$bold(p));rm(p)
       log_consistenia<-rbind(log_consistenia,consistencia_mrg(log_consistenia,x,vars,regra,nome,show))
       for(i in 1:nrow(log_consistenia)){
         if(all(is.na(log_consistenia[i,]))){log_consistenia<-log_consistenia[-i,]}
       }
 
     }
+    #Se é MRG, pode faltar nas vars isoladas
+    pode_falta<-TRUE
   }
   #Isoladas
   {
     for(v in 1:length(vars)){
       var=vars[v]
-      cat(crayon::yellow$bold("==============Var: ")%+% crayon::yellow$bold(var)%+%crayon::yellow$bold("==============\n"))
+      p=paste0("==============Var - ",var,"==============\n")
+      cat(crayon::yellow$bold(p));rm(p)
 
       if(regra=="100"){
         entrou=sum(!is.na(x[[var]]))
