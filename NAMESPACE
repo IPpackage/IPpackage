@@ -3,5 +3,6 @@
 export(consistencia)
 export(round_excel)
 export(round_excel_decimais)
+import(crayon)
 import(dplyr)
 import(stringr)

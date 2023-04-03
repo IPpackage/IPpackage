@@ -15,6 +15,7 @@
 #'
 #' @import dplyr
 #' @import stringr
+#' @import crayon
 #'
 #' @examples
 #'
@@ -85,16 +86,21 @@ consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FA
 
       }
       print(log_consistenia[nrow(log_consistenia),])
+      #cat(crayon::green(log_consistenia[nrow(log_consistenia),]))
+      #cat(crayon::green("\n"))
+
       #mostrar o banco de dados com os erros e vars que quero
       if(all(show!=FALSE)&log_consistenia[nrow(log_consistenia),4]!="OK"){
-        message("--------------show-------------")
+        cat(crayon::green$bold("--------------show--------------\n"))
+
         print(bd%>%dplyr::select(all_of(show),entrou,base)%>%dplyr::filter(entrou!=base)%>%data.frame())
+
       }
       return(log_consistenia%>%unique())
     }
     if(length(vars)>1){
-      message("--------------MRG--------------")
       if(is.null(nome)){nome=paste0("MRG-",vars[1]);message(paste0("Como nome=NULL, atribuimos o nome '",nome,"'"))}
+      cat(crayon::green$bold("==============MRG - ")%+% crayon::green$bold(nome)%+%crayon::green$green("==============\n"))
       log_consistenia<-rbind(log_consistenia,consistencia_mrg(log_consistenia,x,vars,regra,nome,show))
       for(i in 1:nrow(log_consistenia)){
         if(all(is.na(log_consistenia[i,]))){log_consistenia<-log_consistenia[-i,]}
@@ -106,7 +112,7 @@ consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FA
   {
     for(v in 1:length(vars)){
       var=vars[v]
-      message(paste0("--------------Var: ",var,"-------------"))
+      cat(crayon::yellow$bold("==============Var: ")%+% crayon::yellow$bold(var)%+%crayon::yellow$bold("==============\n"))
 
       if(regra=="100"){
         entrou=sum(!is.na(x[[var]]))
@@ -174,7 +180,7 @@ consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FA
       print(log_consistenia[nrow(log_consistenia),])
       #mostrar o banco de dados com os erros e vars que quero
       if(all(show!=FALSE)&log_consistenia[nrow(log_consistenia),4]!="OK"){
-        message("--------------show-------------")
+        cat(crayon::yellow$bold("--------------show--------------\n"))
         print(bd%>%dplyr::select(dplyr::all_of(show),entrou,base)%>%dplyr::filter(entrou!=base)%>%data.frame())
       }
     }
