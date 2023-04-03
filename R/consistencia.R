@@ -181,6 +181,7 @@ consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FA
       #   }
       #   log_consistenia<-x%>%dplyr::arrange(ordem)%>%dplyr::select(-ordem);rm(x)
       # }
+
       print(log_consistenia[nrow(log_consistenia),])
       #mostrar o banco de dados com os erros e vars que quero
       if(all(show!=FALSE)&log_consistenia[nrow(log_consistenia),4]!="OK"){
@@ -191,7 +192,7 @@ consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FA
 
   }
   return(log_consistenia)
-  rm(log_consistenia,x,vars,regra,pode_falta,show,v,vars,var,nome,x_base_x,x_entrou_x,)%>%suppressWarnings()
+  rm(log_consistenia,x,vars,regra,pode_falta,show,v,vars,var,nome,x_base_x,x_entrou_x,i,resultado,entrou,descricao,base)%>%suppressWarnings()
 }
 
 
