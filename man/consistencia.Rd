@@ -11,7 +11,7 @@ consistencia(
   nome = NULL,
   regra,
   pode_falta = FALSE,
-  show = vars
+  show = FALSE
 )
 }
 \arguments{

@@ -41,7 +41,9 @@
 #'
 #' @export
 #'
-consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FALSE,show=vars){
+#'
+
+consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FALSE,show=FALSE){
   `%nin%` = Negate(`%in%`)
   if(is.null(log_consistenia)){log_consistenia=data.frame(var=NA,entrou=NA,base=NA,resultado=NA,descricao=NA,regra=NA)}
   #MRG
@@ -85,8 +87,8 @@ consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FA
       print(log_consistenia[nrow(log_consistenia),])
       #mostrar o banco de dados com os erros e vars que quero
       if(all(show!=FALSE)&log_consistenia[nrow(log_consistenia),4]!="OK"){
-        message("--------------show-------------",quote=FALSE)
-        print(bd%>%dplyr::select(show,entrou,base)%>%dplyr::filter(entrou!=base)%>%data.frame())
+        message("--------------show-------------")
+        print(bd%>%dplyr::select(all_of(show),entrou,base)%>%dplyr::filter(entrou!=base)%>%data.frame())
       }
       return(log_consistenia%>%unique())
     }
@@ -97,7 +99,6 @@ consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FA
       for(i in 1:nrow(log_consistenia)){
         if(all(is.na(log_consistenia[i,]))){log_consistenia<-log_consistenia[-i,]}
       }
-      message("--------------Vars-------------")
 
     }
   }
@@ -105,6 +106,8 @@ consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FA
   {
     for(v in 1:length(vars)){
       var=vars[v]
+      message(paste0("--------------Var: ",var,"-------------"))
+
       if(regra=="100"){
         entrou=sum(!is.na(x[[var]]))
         base=nrow(x)
@@ -130,6 +133,7 @@ consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FA
           resultado="Erro"
           n_entrou_menos=paste(xx%>%dplyr::filter(x_entrou_x==0&x_base_x==1)%>%nrow(),"nao entrou e deveria")
           n_entrou_mais=paste(xx%>%dplyr::filter(x_entrou_x==1&x_base_x==0)%>%nrow(),"entrou e nao deveria")
+
           if(xx%>%dplyr::filter(x_entrou_x==0&x_base_x==1)%>%nrow()!=0&xx%>%dplyr::filter(x_entrou_x==1&x_base_x==0)%>%nrow()!=0){
             descricao=paste0(n_entrou_menos,";",n_entrou_mais)
           }else{
@@ -145,9 +149,12 @@ consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FA
       #Se puder faltar
       if(pode_falta==TRUE){
         if(log_consistenia[nrow(log_consistenia),which(colnames(log_consistenia)=="resultado")]=="Erro"){
-          if(log_consistenia[nrow(log_consistenia),which(colnames(log_consistenia)=="descricao")]%>%stringr::str_remove_all(" ")%>%stringr::str_detect("naoentrouedeveria")&!log_consistenia[nrow(log_consistenia),which(colnames(log_consistenia)=="descricao")]%>%stringr::str_remove_all(" ")%>%stringr::str_detect("entrouenaodeveria")){
+          if(log_consistenia[nrow(log_consistenia),which(colnames(log_consistenia)=="descricao")]%>%stringr::str_remove_all(" ")%>%stringr::str_detect("naoentrouedeveria")){#&!log_consistenia[nrow(log_consistenia),which(colnames(log_consistenia)=="descricao")]%>%stringr::str_remove_all(" ")%>%stringr::str_detect("entrouenaodeveria")){
             log_consistenia[nrow(log_consistenia),which(colnames(log_consistenia)=="descricao")]<-paste0(log_consistenia[nrow(log_consistenia),which(colnames(log_consistenia)=="descricao")]," [Faz parte de um MRG ou e 'outros', pode faltar]")
-            log_consistenia[nrow(log_consistenia),which(colnames(log_consistenia)=="resultado")]<-"OK"
+            if(!log_consistenia[nrow(log_consistenia),which(colnames(log_consistenia)=="descricao")]%>%stringr::str_remove_all(" ")%>%stringr::str_detect("entrouenaodeveria")){
+              log_consistenia[nrow(log_consistenia),which(colnames(log_consistenia)=="resultado")]<-"OK"
+            }
+            bd=bd%>%dplyr::mutate(entrou=ifelse(entrou==0&base==1,1,entrou))
           }
         }
       }
@@ -176,6 +183,7 @@ consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FA
   return(log_consistenia)
   rm(log_consistenia,x,vars,regra,pode_falta,show,v,vars,var,nome,x_base_x,x_entrou_x,)%>%suppressWarnings()
 }
+
 
 
 
