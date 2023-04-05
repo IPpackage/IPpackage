@@ -106,10 +106,10 @@ consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FA
       for(i in 1:nrow(log_consistenia)){
         if(all(is.na(log_consistenia[i,]))){log_consistenia<-log_consistenia[-i,]}
       }
-
+      #Se é MRG, pode faltar nas vars isoladas
+      pode_falta<-TRUE
     }
-    #Se é MRG, pode faltar nas vars isoladas
-    pode_falta<-TRUE
+
   }
   #Isoladas
   {
