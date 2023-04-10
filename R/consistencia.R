@@ -40,6 +40,7 @@
 #' vars=paste0("v3_",1:3),regra="v1%nin%c(1)",pode_falta=TRUE,show=c("id","v1",
 #' paste0("v3_",1:3)),nome="G003")
 #'
+#'#bbbb
 #' @export
 #'
 #'

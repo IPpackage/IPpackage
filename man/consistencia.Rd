@@ -57,7 +57,6 @@ regra="v1\%nin\%c(1)",pode_falta=FALSE,show=c("id","v1","v2"))
 log_consistenia=consistencia(log_consistenia=log_consistenia,x=data,
 vars=paste0("v3_",1:3),regra="v1\%nin\%c(1)",pode_falta=TRUE,show=c("id","v1",
 paste0("v3_",1:3)),nome="G003")
-# aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-# aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
+#bbbb
 }
