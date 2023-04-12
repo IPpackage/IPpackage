@@ -102,7 +102,7 @@ consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FA
       if(is.null(nome)){nome=paste0("MRG-",vars[1]);message(paste0("Como nome=NULL, atribuimos o nome '",nome,"'"))}
       p=paste0("==============MRG - ",nome,"==============\n")
       cat(crayon::green$bold(p));rm(p)
-      log_consistenia<-rbind(log_consistenia,consistencia_mrg(log_consistenia,x,vars,regra,nome,show))
+      log_consistenia<-consistencia_mrg(log_consistenia,x,vars,regra,nome,show)
       for(i in 1:nrow(log_consistenia)){
         if(all(is.na(log_consistenia[i,]))){log_consistenia<-log_consistenia[-i,]}
       }
