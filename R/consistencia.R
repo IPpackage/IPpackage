@@ -15,8 +15,8 @@
 #'
 #' @import dplyr
 #' @import stringr
-#' @import crayon
-#'
+#' @importFrom crayon green yellow
+
 #' @examples
 #'
 #' data=IPpackage::IPpackage_exemplo
