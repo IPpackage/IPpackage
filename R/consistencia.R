@@ -3,20 +3,26 @@
 #'
 #' @description  x
 #'
-#' @param log_consistenia log_consistenia
-#' @param x x
-#' @param vars vars
-#' @param nome nome
-#' @param regra regra
-#' @param pode_falta pode_falta
-#' @param show show
+#' @param log_consistenia Se a variável em questão for a primeira a ser testada,
+#' log_consistenia é definida como NULL; no entanto, se um arquivo no formato de
+#' saída dessa função já existir, log_consistenia será o seu data.frame correspondente
+#' @param x Banco de dados
+#' @param vars Variável ou, no caso de um MRG, vetor de variáveis
+#' @param nome Se vars for um vetor -MRG, este será o nome a ser atribuído a esse
+#' conjunto de variáveis
+#' @param regra Regra de entrada. Obs.: se a base for 100 porcento, atribua o valor '100'
+#' @param pode_falta 'TRUE' para indicar a possibilidade de respostas ausentes;
+#' 'FALSE' para indicar a ausência de tolerância para respostas não fornecidas.
+#' @param show Indicar as variáveis a serem impressas em caso de erro -serão
+#' exibidas apenas as variáveis indicadas e as linhas com erros; 'FALSE' para não
+#' imprimir as linhas, mesmo na presença de erros.
 #'
 #' @details Consute o livro para mais detalhes e exemplos.
 #'
 #' @import dplyr
 #' @import stringr
-#' @importFrom crayon green yellow
-
+#' @import crayon
+#'
 #' @examples
 #'
 #' data=IPpackage::IPpackage_exemplo
@@ -29,7 +35,7 @@
 #' vars=paste0("v3_",1:3),regra="v1%nin%c(1)",pode_falta=TRUE,show=c("id","v1","v2")
 #' ,nome="G003")
 #' log_consistenia=consistencia(log_consistenia=log_consistenia,x=data,
-#' vars=paste0("v",4:11),regra="100",pode_falta=TRUE,show=c("id","v1","v2"))
+#' vars=paste0("v",4:11),regra="v1%nin%c(1)",pode_falta=TRUE,show=c("id","v1","v2"))
 #' ##Com Erro
 #' data$v1[3]=NA;data$v1[4]<-1
 #' log_consistenia=consistencia(log_consistenia=NULL,x=data,vars="v1",regra="100",
@@ -194,8 +200,6 @@ consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FA
   return(log_consistenia)
   rm(log_consistenia,x,vars,regra,pode_falta,show,v,vars,var,nome,x_base_x,x_entrou_x,i,resultado,entrou,descricao,base)%>%suppressWarnings()
 }
-
-
 
 
 
