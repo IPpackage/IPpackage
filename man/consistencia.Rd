@@ -16,8 +16,8 @@ consistencia(
 }
 \arguments{
 \item{log_consistenia}{Se a variável em questão for a primeira a ser testada,
-log_consistenia é definida como NULL; no entanto, se um arquivo no formato de
-saída dessa função já existir, log_consistenia será o seu data.frame correspondente}
+'log_consistenia' é definida como 'NULL'; no entanto, se um arquivo no formato de
+saída dessa função já existir, 'log_consistenia' será o seu data.frame correspondente}
 
 \item{x}{Banco de dados}
 
@@ -36,7 +36,8 @@ exibidas apenas as variáveis indicadas e as linhas com erros; 'FALSE' para não
 imprimir as linhas, mesmo na presença de erros.}
 }
 \description{
-x
+A função foi desenvolvida para avaliar se todos os indivíduos
+designados para responder à variável/MRG cumpriram com essa atribuição.
 }
 \details{
 Consute o livro para mais detalhes e exemplos.
@@ -45,22 +46,22 @@ Consute o livro para mais detalhes e exemplos.
 
 data=IPpackage::IPpackage_exemplo
 ##Tudo OK
-log_consistenia=consistencia(log_consistenia=NULL,x=data,vars="v1",regra="100",
+log_consistenia=IPpackage::consistencia(log_consistenia=NULL,x=data,vars="v1",regra="100",
 pode_falta=FALSE,show=c("id","v1"))
-log_consistenia=consistencia(log_consistenia=log_consistenia,x=data,vars="v2",
+log_consistenia=IPpackage::consistencia(log_consistenia=log_consistenia,x=data,vars="v2",
 regra="v1\%nin\%c(1)",pode_falta=FALSE,show=c("id","v1","v2"))
-log_consistenia=consistencia(log_consistenia=log_consistenia,x=data,
+log_consistenia=IPpackage::consistencia(log_consistenia=log_consistenia,x=data,
 vars=paste0("v3_",1:3),regra="v1\%nin\%c(1)",pode_falta=TRUE,show=c("id","v1","v2")
 ,nome="G003")
-log_consistenia=consistencia(log_consistenia=log_consistenia,x=data,
+log_consistenia=IPpackage::consistencia(log_consistenia=log_consistenia,x=data,
 vars=paste0("v",4:11),regra="v1\%nin\%c(1)",pode_falta=TRUE,show=c("id","v1","v2"))
 ##Com Erro
 data$v1[3]=NA;data$v1[4]<-1
-log_consistenia=consistencia(log_consistenia=NULL,x=data,vars="v1",regra="100",
+log_consistenia=IPpackage::consistencia(log_consistenia=NULL,x=data,vars="v1",regra="100",
 pode_falta=FALSE,show=c("id","v1","v2"))
-log_consistenia=consistencia(log_consistenia=log_consistenia,x=data,vars="v2",
+log_consistenia=IPpackage::consistencia(log_consistenia=log_consistenia,x=data,vars="v2",
 regra="v1\%nin\%c(1)",pode_falta=FALSE,show=c("id","v1","v2"))
-log_consistenia=consistencia(log_consistenia=log_consistenia,x=data,
+log_consistenia=IPpackage::consistencia(log_consistenia=log_consistenia,x=data,
 vars=paste0("v3_",1:3),regra="v1\%nin\%c(1)",pode_falta=TRUE,show=c("id","v1",
 paste0("v3_",1:3)),nome="G003")
 

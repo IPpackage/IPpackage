@@ -1,11 +1,12 @@
 #' @title consistencia
 #' @name consistencia
 #'
-#' @description  x
+#' @description A função foi desenvolvida para avaliar se todos os indivíduos
+#' designados para responder à variável/MRG cumpriram com essa atribuição.
 #'
 #' @param log_consistenia Se a variável em questão for a primeira a ser testada,
-#' log_consistenia é definida como NULL; no entanto, se um arquivo no formato de
-#' saída dessa função já existir, log_consistenia será o seu data.frame correspondente
+#' 'log_consistenia' é definida como 'NULL'; no entanto, se um arquivo no formato de
+#' saída dessa função já existir, 'log_consistenia' será o seu data.frame correspondente
 #' @param x Banco de dados
 #' @param vars Variável ou, no caso de um MRG, vetor de variáveis
 #' @param nome Se vars for um vetor -MRG, este será o nome a ser atribuído a esse
@@ -21,28 +22,27 @@
 #'
 #' @import dplyr
 #' @import stringr
-#' @import crayon
 #'
 #' @examples
 #'
 #' data=IPpackage::IPpackage_exemplo
 #' ##Tudo OK
-#' log_consistenia=consistencia(log_consistenia=NULL,x=data,vars="v1",regra="100",
+#' log_consistenia=IPpackage::consistencia(log_consistenia=NULL,x=data,vars="v1",regra="100",
 #' pode_falta=FALSE,show=c("id","v1"))
-#' log_consistenia=consistencia(log_consistenia=log_consistenia,x=data,vars="v2",
+#' log_consistenia=IPpackage::consistencia(log_consistenia=log_consistenia,x=data,vars="v2",
 #' regra="v1%nin%c(1)",pode_falta=FALSE,show=c("id","v1","v2"))
-#' log_consistenia=consistencia(log_consistenia=log_consistenia,x=data,
+#' log_consistenia=IPpackage::consistencia(log_consistenia=log_consistenia,x=data,
 #' vars=paste0("v3_",1:3),regra="v1%nin%c(1)",pode_falta=TRUE,show=c("id","v1","v2")
 #' ,nome="G003")
-#' log_consistenia=consistencia(log_consistenia=log_consistenia,x=data,
+#' log_consistenia=IPpackage::consistencia(log_consistenia=log_consistenia,x=data,
 #' vars=paste0("v",4:11),regra="v1%nin%c(1)",pode_falta=TRUE,show=c("id","v1","v2"))
 #' ##Com Erro
 #' data$v1[3]=NA;data$v1[4]<-1
-#' log_consistenia=consistencia(log_consistenia=NULL,x=data,vars="v1",regra="100",
+#' log_consistenia=IPpackage::consistencia(log_consistenia=NULL,x=data,vars="v1",regra="100",
 #' pode_falta=FALSE,show=c("id","v1","v2"))
-#' log_consistenia=consistencia(log_consistenia=log_consistenia,x=data,vars="v2",
+#' log_consistenia=IPpackage::consistencia(log_consistenia=log_consistenia,x=data,vars="v2",
 #' regra="v1%nin%c(1)",pode_falta=FALSE,show=c("id","v1","v2"))
-#' log_consistenia=consistencia(log_consistenia=log_consistenia,x=data,
+#' log_consistenia=IPpackage::consistencia(log_consistenia=log_consistenia,x=data,
 #' vars=paste0("v3_",1:3),regra="v1%nin%c(1)",pode_falta=TRUE,show=c("id","v1",
 #' paste0("v3_",1:3)),nome="G003")
 #'
@@ -91,13 +91,15 @@ consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FA
         rm(ne_d,d)%>%suppressWarnings()
 
       }
-      print(log_consistenia[nrow(log_consistenia),])
-      #cat(crayon::green(log_consistenia[nrow(log_consistenia),]))
-      #cat(crayon::green("\n"))
 
+      if(log_consistenia$resultado[nrow(log_consistenia)]=="Erro"){
+        IPpackage::print_cor(log_consistenia[nrow(log_consistenia),],cor="vermelho",data.frame=TRUE)
+      }else{
+        IPpackage::print_cor(log_consistenia[nrow(log_consistenia),],cor="verde",data.frame=TRUE)
+      }
       #mostrar o banco de dados com os erros e vars que quero
       if(all(show!=FALSE)&log_consistenia[nrow(log_consistenia),4]!="OK"){
-        cat(crayon::green$bold("--------------show--------------\n"))
+        IPpackage::print_cor("--------------show--------------\n",cor="ciano",negrito=TRUE,data.frame=FALSE)
 
         print(bd%>%dplyr::select(dplyr::all_of(show),entrou,base)%>%dplyr::filter(entrou!=base)%>%data.frame())
 
@@ -107,7 +109,8 @@ consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FA
     if(length(vars)>1){
       if(is.null(nome)){nome=paste0("MRG-",vars[1]);message(paste0("Como nome=NULL, atribuimos o nome '",nome,"'"))}
       p=paste0("==============MRG - ",nome,"==============\n")
-      cat(crayon::green$bold(p));rm(p)
+      IPpackage::print_cor(p,cor="ciano",negrito=TRUE,data.frame=FALSE)
+
       log_consistenia<-consistencia_mrg(log_consistenia,x,vars,regra,nome,show)
       for(i in 1:nrow(log_consistenia)){
         if(all(is.na(log_consistenia[i,]))){log_consistenia<-log_consistenia[-i,]}
@@ -122,7 +125,7 @@ consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FA
     for(v in 1:length(vars)){
       var=vars[v]
       p=paste0("==============Var - ",var,"==============\n")
-      cat(crayon::yellow$bold(p));rm(p)
+      IPpackage::print_cor(p,cor="amarelo",negrito=TRUE,data.frame=FALSE)
 
       if(regra=="100"){
         entrou=sum(!is.na(x[[var]]))
@@ -188,10 +191,15 @@ consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FA
       #   log_consistenia<-x%>%dplyr::arrange(ordem)%>%dplyr::select(-ordem);rm(x)
       # }
 
-      print(log_consistenia[nrow(log_consistenia),])
+      if(log_consistenia$resultado[nrow(log_consistenia)]=="Erro"){
+        IPpackage::print_cor(log_consistenia[nrow(log_consistenia),],cor="vermelho",data.frame=TRUE)
+      }else{
+        IPpackage::print_cor(log_consistenia[nrow(log_consistenia),],cor="verde",data.frame=TRUE)
+      }
+
       #mostrar o banco de dados com os erros e vars que quero
       if(all(show!=FALSE)&log_consistenia[nrow(log_consistenia),4]!="OK"){
-        cat(crayon::yellow$bold("--------------show--------------\n"))
+        IPpackage::print_cor("--------------show--------------\n",cor="amarelo",negrito=TRUE,data.frame=FALSE)
         print(bd%>%dplyr::select(dplyr::all_of(show),entrou,base)%>%dplyr::filter(entrou!=base)%>%data.frame())
       }
     }
@@ -200,6 +208,4 @@ consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FA
   return(log_consistenia)
   rm(log_consistenia,x,vars,regra,pode_falta,show,v,vars,var,nome,x_base_x,x_entrou_x,i,resultado,entrou,descricao,base)%>%suppressWarnings()
 }
-
-
 

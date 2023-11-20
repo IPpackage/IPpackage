@@ -2,9 +2,9 @@
 
 export(Felipe_radar)
 export(consistencia)
+export(print_cor)
 export(round_excel)
 export(round_excel_decimais)
-import(crayon)
 import(dplyr)
 import(ggplot2)
 import(scales)
