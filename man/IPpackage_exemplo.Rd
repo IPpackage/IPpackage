@@ -15,6 +15,7 @@ Um data frame com 100 linhas e X colunas:
   \item{v4,v5,v6,v7,v8,v9,v10,v11}{MRG citou; v10=Outros; v11=NS/NR
   (só responde quem não respondeu v1==1)}
   \item{v12, v13}{Variáveis de escala}
+  \item{v14, v14_orig}{Variáveis de texto - codificada e original}
   ...
 }
 }

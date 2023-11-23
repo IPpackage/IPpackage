@@ -65,4 +65,3 @@ print_cor <- function(df, cor, negrito = FALSE, italico = FALSE,borrado=FALSE,su
   }
 }
 
-
