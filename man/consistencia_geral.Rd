@@ -13,8 +13,8 @@ consistencia_geral(
   coluna_variaveis,
   coluna_pode_faltar,
   coluna_regra,
-  aba_pode_faltar_label,
-  aba_e_mrg_ou_nao,
+  coluna_pode_faltar_label,
+  coluna_e_mrg_ou_nao,
   aba_abertas = NULL,
   coluna_aberta_id = NULL,
   coluna_aberta_codificada = NULL,
@@ -45,10 +45,10 @@ possibilidade de ausência de respondentes}
 \item{coluna_regra}{Nome da coluna em 'aba_principal' que contém informações
 sobre a regra da base}
 
-\item{aba_pode_faltar_label}{Nome da coluna em 'aba_principal' que indica a
+\item{coluna_pode_faltar_label}{Nome da coluna em 'aba_principal' que indica a
 possibilidade de ausência ou presença de labels}
 
-\item{aba_e_mrg_ou_nao}{Nome da coluna em 'aba_principal' que informa se se
+\item{coluna_e_mrg_ou_nao}{Nome da coluna em 'aba_principal' que informa se se
 trata ou não de um MRG}
 
 \item{aba_abertas}{Nome da aba/sheet que contém variáveis abertas - 'NULL' caso
@@ -91,8 +91,8 @@ Consute o livro para mais detalhes e exemplos.
 #   ,coluna_variaveis="vars"
 #   ,coluna_pode_faltar="pd_falt_cons"
 #   ,coluna_regra="C_regra"
-#   ,aba_pode_faltar_label="pd_falt_labl"
-#   ,aba_e_mrg_ou_nao="obs"
+#   ,coluna_pode_faltar_label="pd_falt_labl"
+#   ,coluna_e_mrg_ou_nao="obs"
 #   ,aba_abertas=NULL
 #   ,coluna_aberta_id=NULL
 #   ,coluna_aberta_codificada=NULL

@@ -20,9 +20,9 @@
 #' possibilidade de ausência de respondentes
 #' @param coluna_regra Nome da coluna em 'aba_principal' que contém informações
 #' sobre a regra da base
-#' @param aba_pode_faltar_label Nome da coluna em 'aba_principal' que indica a
+#' @param coluna_pode_faltar_label Nome da coluna em 'aba_principal' que indica a
 #' possibilidade de ausência ou presença de labels
-#' @param aba_e_mrg_ou_nao Nome da coluna em 'aba_principal' que informa se se
+#' @param coluna_e_mrg_ou_nao Nome da coluna em 'aba_principal' que informa se se
 #' trata ou não de um MRG
 #' @param aba_abertas Nome da aba/sheet que contém variáveis abertas - 'NULL' caso
 #' não queira analisar as abertas
@@ -57,8 +57,8 @@
 #' #   ,coluna_variaveis="vars"
 #' #   ,coluna_pode_faltar="pd_falt_cons"
 #' #   ,coluna_regra="C_regra"
-#' #   ,aba_pode_faltar_label="pd_falt_labl"
-#' #   ,aba_e_mrg_ou_nao="obs"
+#' #   ,coluna_pode_faltar_label="pd_falt_labl"
+#' #   ,coluna_e_mrg_ou_nao="obs"
 #' #   ,aba_abertas=NULL
 #' #   ,coluna_aberta_id=NULL
 #' #   ,coluna_aberta_codificada=NULL
@@ -79,8 +79,8 @@ consistencia_geral=function(
     coluna_variaveis,
     coluna_pode_faltar,
     coluna_regra,
-    aba_pode_faltar_label,
-    aba_e_mrg_ou_nao,
+    coluna_pode_faltar_label,
+    coluna_e_mrg_ou_nao,
     aba_abertas=NULL,
     coluna_aberta_id=NULL,
     coluna_aberta_codificada=NULL,
@@ -95,9 +95,9 @@ consistencia_geral=function(
     if(base::any(base::colnames(label)==coluna_pode_faltar)){base::colnames(label)[base::colnames(label)==coluna_pode_faltar]<-"coluna_pode_faltar"}
     if(base::any(base::colnames(label)==coluna_regra)){base::colnames(label)[base::colnames(label)==coluna_regra]<-"coluna_regra"}
 
-    if(base::any(base::colnames(label)==aba_pode_faltar_label)){base::colnames(label)[base::colnames(label)==aba_pode_faltar_label]<-"aba_pode_faltar_label"}
-    if(base::any(base::colnames(label)==aba_e_mrg_ou_nao)){base::colnames(label)[base::colnames(label)==aba_e_mrg_ou_nao]<-"aba_e_mrg_ou_nao"}
-    label=label%>%dplyr::select(coluna_nome_variavel,coluna_variaveis,coluna_pode_faltar,coluna_regra,aba_pode_faltar_label,aba_e_mrg_ou_nao)
+    if(base::any(base::colnames(label)==coluna_pode_faltar_label)){base::colnames(label)[base::colnames(label)==coluna_pode_faltar_label]<-"coluna_pode_faltar_label"}
+    if(base::any(base::colnames(label)==coluna_e_mrg_ou_nao)){base::colnames(label)[base::colnames(label)==coluna_e_mrg_ou_nao]<-"coluna_e_mrg_ou_nao"}
+    label=label%>%dplyr::select(coluna_nome_variavel,coluna_variaveis,coluna_pode_faltar,coluna_regra,coluna_pode_faltar_label,coluna_e_mrg_ou_nao)
 
 
     all_vars=label$coluna_nome_variavel%>%unique()
@@ -118,15 +118,15 @@ consistencia_geral=function(
       }
       falta_resp=label%>%dplyr::filter(coluna_nome_variavel==nome_var)%>%dplyr::select("coluna_pode_faltar")%>%dplyr::pull()
 
-      var_mrg_nome=label%>%dplyr::filter(coluna_nome_variavel==nome_var)%>%dplyr::select("aba_e_mrg_ou_nao")%>%dplyr::pull()%>%stringr::str_detect("mrg")
+      var_mrg_nome=label%>%dplyr::filter(coluna_nome_variavel==nome_var)%>%dplyr::select("coluna_e_mrg_ou_nao")%>%dplyr::pull()%>%stringr::str_detect("mrg")
       if((var_mrg_nome==FALSE)&(base::length(vars)>1)){
         #if(nome_var%>%stringr::str_detect('imrg|mmrg')){
         var_mrg_nome=TRUE
         #}
       }
       if(var_mrg_nome==TRUE){var_mrg_nome=nome_var}else{var_mrg_nome=NA}
-      mrg_citou=label%>%dplyr::filter(coluna_nome_variavel==nome_var)%>%dplyr::select("aba_e_mrg_ou_nao")%>%dplyr::pull()%>%stringr::str_detect("mrg_citou")
-      pode_falta=label%>%dplyr::filter(coluna_nome_variavel==nome_var)%>%dplyr::select("aba_pode_faltar_label")%>%dplyr::pull()
+      mrg_citou=label%>%dplyr::filter(coluna_nome_variavel==nome_var)%>%dplyr::select("coluna_e_mrg_ou_nao")%>%dplyr::pull()%>%stringr::str_detect("mrg_citou")
+      pode_falta=label%>%dplyr::filter(coluna_nome_variavel==nome_var)%>%dplyr::select("coluna_pode_faltar_label")%>%dplyr::pull()
 
       #consistência das variáveis
       if(base::any(base::is.na(vars))|base::is.na(regra)|base::is.na(falta_resp)){
