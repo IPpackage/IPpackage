@@ -109,7 +109,7 @@ consistencia_geral=function(
     for(i in 1:base::length(all_vars)){
       #for(i in 543:base::length(all_vars)){
       nome_var=all_vars[i]
-      vars=base::unlist(base::strsplit(label%>%dplyr::filter(`coluna_nome_variavel`==nome_var)%>%dplyr::select("coluna_variaveis")%>%dplyr::pull(),","))
+      vars=base::unlist(base::strsplit(label%>%dplyr::filter(`coluna_nome_variavel`==nome_var)%>%dplyr::select("coluna_variaveis")%>%dplyr::pull(),","))%>%stringr::str_trim()
       regra=label%>%dplyr::filter(coluna_nome_variavel==nome_var)%>%dplyr::select("coluna_regra")%>%dplyr::pull()
       if(!base::is.na(regra)){
         if(regra%>%stringr::str_detect("&amp;")){
