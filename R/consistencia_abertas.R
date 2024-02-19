@@ -53,7 +53,7 @@ consistencia_abertas=function(log_consistencia_aberta=NULL,xdf,var_id,var_codifi
   if (base::is.null(log_consistencia_aberta)) {
     log_consistencia_aberta = base::data.frame(var_codificada = NA,var_orig=NA ,resultado = NA,descricao = NA)
   }
-
+  #Teste
   if(base::is.na(var_orig)){
     var_orig=base::paste0(var_codificada,"_orig")
   }
