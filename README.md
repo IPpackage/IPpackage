@@ -1,6 +1,11 @@
 
 # Innovare Pesquisa - Pacote R (IPpackage)
 
+![Static Badge](https://img.shields.io/badge/STATUS-DESENVOLVIMENTO-critical)
+
+![RStudio](https://img.shields.io/badge/RStudio-R-blue.svg)
+
+
 Este pacotece é uma coleção abrangente de funcionalidades desenvolvidas para a aplicação de diversas funções do R, que são amplamente utilizadas pelos colaboradores.
 
    
@@ -53,5 +58,3 @@ Este pacotece é uma coleção abrangente de funcionalidades desenvolvidas para 
   #Carregando IPpackage
   library(IPpackage)
 ```
-
-![RStudio](https://img.shields.io/badge/RStudio-R-blue.svg)
