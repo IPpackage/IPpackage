@@ -53,5 +53,5 @@ Este pacotece é uma coleção abrangente de funcionalidades desenvolvidas para 
   #Carregando IPpackage
   library(IPpackage)
 ```
-[![Rstudio](https://img.shields.io/badge/Rstudio-R-blue.svg)](https://choosealicense.com/licenses/mit/)
 
+![RStudio](https://img.shields.io/badge/RStudio-R-blue.svg)
