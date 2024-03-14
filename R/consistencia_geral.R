@@ -87,7 +87,8 @@ consistencia_geral = function (
     coluna_aberta_original = NULL,
     coluna_aberta_obs = NULL
 )
-{
+{# Start: Função consistencia_geral
+
   {# Start: base (entrou/não entrou) e se falta Label
 
     {# Start: Renomeando colunas do arquivo de label (padronizando)
@@ -96,7 +97,9 @@ consistencia_geral = function (
 
       if ( base::any(base::colnames(label) == coluna_nome_variavel) )
       {
+
         base::colnames(label)[base::colnames(label) == coluna_nome_variavel] <- "coluna_nome_variavel"
+
       }
 
       if (base::any(base::colnames(label) == coluna_variaveis))
@@ -546,4 +549,4 @@ consistencia_geral = function (
 
   #Retornando o Resultado
   return(log_consistenia)
-}
+}# End: Função consistencia_geral
