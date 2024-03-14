@@ -96,7 +96,9 @@ consistencia_geral = function (
 
       if ( base::any(base::colnames(label) == coluna_nome_variavel) )
       {
+
         base::colnames(label)[base::colnames(label) == coluna_nome_variavel] <- "coluna_nome_variavel"
+
       }
 
       if (base::any(base::colnames(label) == coluna_variaveis))
