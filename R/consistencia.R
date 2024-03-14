@@ -181,7 +181,7 @@ consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FA
       if(pode_falta==TRUE){
         if(log_consistenia[base::nrow(log_consistenia),which(colnames(log_consistenia)=="resultado")]=="Erro"){
           if(log_consistenia[base::nrow(log_consistenia),which(colnames(log_consistenia)=="descricao")]%>%stringr::str_remove_all(" ")%>%stringr::str_detect("naoentrouedeveria")){#&!log_consistenia[base::nrow(log_consistenia),which(colnames(log_consistenia)=="descricao")]%>%stringr::str_remove_all(" ")%>%stringr::str_detect("entrouenaodeveria")){
-            log_consistenia[base::nrow(log_consistenia),which(colnames(log_consistenia)=="descricao")]<-base::paste0(log_consistenia[base::nrow(log_consistenia),which(colnames(log_consistenia)=="descricao")]," [Faz parte de um MRG ou e 'outros', pode faltar]")
+            log_consistenia[base::nrow(log_consistenia),which(colnames(log_consistenia)=="descricao")]<-base::paste0(log_consistenia[base::nrow(log_consistenia),which(colnames(log_consistenia)=="descricao")]," [pode faltar = TRUE]")
             if(!log_consistenia[base::nrow(log_consistenia),which(colnames(log_consistenia)=="descricao")]%>%stringr::str_remove_all(" ")%>%stringr::str_detect("entrouenaodeveria")){
               log_consistenia[base::nrow(log_consistenia),which(colnames(log_consistenia)=="resultado")]<-"OK"
             }
