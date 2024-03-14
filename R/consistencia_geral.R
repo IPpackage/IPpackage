@@ -96,63 +96,38 @@ consistencia_geral = function (
 
       if ( base::any(base::colnames(label) == coluna_nome_variavel) )
       {
-<<<<<<< HEAD
-
-        base::colnames(label)[base::colnames(label) == coluna_nome_variavel] <- "coluna_nome_variavel"
-
-      }
-
-      if ( base::any(base::colnames(label) == coluna_variaveis) )
-=======
         base::colnames(label)[base::colnames(label) == coluna_nome_variavel] <- "coluna_nome_variavel"
       }
 
       if (base::any(base::colnames(label) == coluna_variaveis))
->>>>>>> Felipe-Teste
       {
 
         base::colnames(label)[base::colnames(label) == coluna_variaveis] <- "coluna_variaveis"
 
       }
 
-<<<<<<< HEAD
-      if ( base::any(base::colnames(label) == coluna_pode_faltar) )
-=======
       if (base::any(base::colnames(label) == coluna_pode_faltar))
->>>>>>> Felipe-Teste
       {
 
         base::colnames(label)[base::colnames(label) == coluna_pode_faltar] <- "coluna_pode_faltar"
 
       }
 
-<<<<<<< HEAD
-      if ( base::any(base::colnames(label) == coluna_regra) )
-=======
       if (base::any(base::colnames(label) == coluna_regra))
->>>>>>> Felipe-Teste
       {
 
         base::colnames(label)[base::colnames(label) == coluna_regra] <- "coluna_regra"
 
       }
 
-<<<<<<< HEAD
-      if ( base::any(base::colnames(label) == coluna_pode_faltar_label) )
-=======
       if (base::any(base::colnames(label) == coluna_pode_faltar_label))
->>>>>>> Felipe-Teste
       {
 
         base::colnames(label)[base::colnames(label) == coluna_pode_faltar_label] <- "coluna_pode_faltar_label"
 
       }
 
-<<<<<<< HEAD
-      if ( base::any(base::colnames(label) == coluna_e_mrg_ou_nao) )
-=======
       if (base::any(base::colnames(label) == coluna_e_mrg_ou_nao))
->>>>>>> Felipe-Teste
       {
 
         base::colnames(label)[base::colnames(label) == coluna_e_mrg_ou_nao] <- "coluna_e_mrg_ou_nao"
@@ -200,11 +175,7 @@ consistencia_geral = function (
 
     }# End: Criando data.frame com os resultado
 
-<<<<<<< HEAD
-    for ( i in 1:base::length(all_vars) ) {# Start: rodando para cada uma das variáveis
-=======
     for (i in 1:base::length(all_vars)) {# Start: rodando para cada uma das variáveis
->>>>>>> Felipe-Teste
 
       {# Start: Informações sobre o que estou rodando
 
@@ -380,12 +351,7 @@ consistencia_geral = function (
       {# Start: consistência dos labels
         if( base::any(base::is.na(vars))|
             base::is.na(regra)|
-<<<<<<< HEAD
-            base::is.na(falta_resp)
-        )
-=======
             base::is.na(falta_resp) )
->>>>>>> Felipe-Teste
         {# Start: Se não tenho condições de rodar
 
           y = base::data.frame(
@@ -469,33 +435,21 @@ consistencia_geral = function (
 
         }
 
-<<<<<<< HEAD
-        if( base::any(base::colnames(questao_aberta) == coluna_aberta_codificada) )
-=======
         if(base::any(base::colnames(questao_aberta) == coluna_aberta_codificada))
->>>>>>> Felipe-Teste
         {
 
           base::colnames(questao_aberta)[base::colnames(questao_aberta) == coluna_aberta_codificada] <- "coluna_aberta_codificada"
 
         }
 
-<<<<<<< HEAD
-        if( base::any(base::colnames(questao_aberta) == coluna_aberta_original) )
-=======
         if(base::any(base::colnames(questao_aberta) == coluna_aberta_original))
->>>>>>> Felipe-Teste
         {
 
           base::colnames(questao_aberta)[base::colnames(questao_aberta) == coluna_aberta_original] <- "coluna_aberta_original"
 
         }
 
-<<<<<<< HEAD
-        if( base::any(base::colnames(questao_aberta) == coluna_aberta_obs) )
-=======
         if(base::any(base::colnames(questao_aberta) == coluna_aberta_obs))
->>>>>>> Felipe-Teste
         {
 
           base::colnames(questao_aberta)[base::colnames(questao_aberta) == coluna_aberta_obs] <- "coluna_aberta_obs"
