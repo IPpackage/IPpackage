@@ -87,7 +87,11 @@ consistencia_geral = function (
     coluna_aberta_original = NULL,
     coluna_aberta_obs = NULL
 )
+<<<<<<< HEAD
 {# Start: Função
+=======
+{# Start: Função consistencia_geral
+>>>>>>> Felipe-Teste
 
   {# Start: base (entrou/não entrou) e se falta Label
 
@@ -549,4 +553,8 @@ consistencia_geral = function (
 
   #Retornando o Resultado
   return(log_consistenia)
+<<<<<<< HEAD
 }# End: Função
+=======
+}# End: Função consistencia_geral
+>>>>>>> Felipe-Teste
