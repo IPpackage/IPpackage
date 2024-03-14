@@ -136,7 +136,11 @@ consistencia_label=function(log_consistenia_label=NULL,xdf,xdicionario,vars,var_
       }else{
         mensagem=base::cat(base::paste0("\033[1;33m[",nome,"] var x label OK (faltou mas pode faltar)\033[0m\n"))
         resultado="ok"
+<<<<<<< HEAD
         descricao="Faltou label [pode faltar = TRUE]"
+=======
+        descricao="Faltou Label [pode faltar = TRUE]"
+>>>>>>> Felipe-Teste
         cor="amarelo"
       }
     }else{
