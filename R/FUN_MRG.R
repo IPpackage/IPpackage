@@ -142,9 +142,8 @@ FUN_MRG <- function(
             "Base"
             )
           )
+
       {# Start: Identificando e colocando os warnings no 'Log_MRG'
-
-
 
         if( base::any(base::is.na(out[[i]]%>%dplyr::pull(6))) )
         {# Start: Motivo para algum warning
@@ -152,21 +151,26 @@ FUN_MRG <- function(
           if ( vars_nomes[i] %nin% c(DICIONARIO %>% dplyr::distinct(opcao_variavel) %>% dplyr::pull()) )
           {# Start: warning1 ("Variável var não presente no dicionário")
 
-            msg=stringr::str_c("Vari\u00E1vel ", vars_nomes[i], " n\u00E3o presente no dicion\u00E1rio")
+            msg=stringr::str_c(
+              "Vari\u00E1vel ",
+              vars_nomes[i],
+              " n\u00E3o presente no dicion\u00E1rio"
+            )
+
             all_warning=c(all_warning,"\n",msg)
 
-            if( base::length(Log_MRG)==0 )
+            if( base::length(Log_MRG) == 0 )
             {# Start: Colocando msg do warning1 no 'Log_MRG'
 
-              Log_MRG[[1]]<-tibble::tibble(
-                Variavel=vars_nomes[i],
-                `Problema`=msg,
-                Status="rodou"
+              Log_MRG[[1]] <- tibble::tibble(
+                Variavel = vars_nomes[i],
+                `Problema` = msg,
+                Status = "rodou"
               )
 
             }else{
 
-              Log_MRG[[1]]<-dplyr::bind_rows(
+              Log_MRG[[1]] <- dplyr::bind_rows(
                 Log_MRG[[1]],
                 tibble::tibble(
                   Variavel=vars_nomes[i],
@@ -181,34 +185,41 @@ FUN_MRG <- function(
 
             all_cods_falt=base::as.character(out[[i]][which(base::is.na(out[[i]][,6])),1]%>%dplyr::pull())
 
-            if( base::length(all_cods_falt)>5 )
+            if( base::length(all_cods_falt) > 5 )
             {# Start: Limitando o número de códigos a serem inseridos no warning
 
-              all_cods_falt=all_cods_falt[1:5]
-              all_cods_falt[6]="..."
+              all_cods_falt = all_cods_falt[1:5]
+              all_cods_falt[6] = "..."
 
             }# End: Limitando o número de códigos a serem inseridos no warning
 
-            msg=stringr::str_c("Vari\u00E1vel ", vars_nomes[i], " possui label n\u00E3o presente no dicion\u00E1rio. C\u00F3digo(s) [",base::paste(all_cods_falt,collapse = ","),"]")
+            msg=stringr::str_c(
+              "Vari\u00E1vel ",
+              vars_nomes[i],
+              " possui label n\u00E3o presente no dicion\u00E1rio. C\u00F3digo(s) [",
+              base::paste(all_cods_falt,collapse = ","),
+              "]"
+            )
+
             all_warning=c(all_warning,"\n",msg)
 
-            if( base::length(Log_MRG)==0 )
+            if( base::length(Log_MRG) == 0 )
             {# Start: Colocando msg do warning2 no 'Log_MRG'
 
-              Log_MRG[[1]]<-tibble::tibble(
-                Variavel=vars_nomes[i],
-                `Problema`=msg,
-                Status="rodou"
+              Log_MRG[[1]] <- tibble::tibble(
+                Variavel = vars_nomes[i],
+                `Problema`= msg,
+                Status = "rodou"
               )
 
             }else{
 
-              Log_MRG[[1]]<-dplyr::bind_rows(
+              Log_MRG[[1]] <- dplyr::bind_rows(
                 Log_MRG[[1]],
                 tibble::tibble(
-                  Variavel=vars_nomes[i],
-                  `Problema`=msg,
-                  Status="rodou"
+                  Variavel = vars_nomes[i],
+                  `Problema` = msg,
+                  Status = "rodou"
                 )
               )
 
@@ -220,11 +231,11 @@ FUN_MRG <- function(
 
       }# End: Identificando e colocando os warnings no 'Log_MRG'
 
-      if( adc_labels==FALSE )
+      if( adc_labels == FALSE )
       {# Start: se não quiser adicionar o Label na saída
 
         #Remove a coluna com o Label
-        out[[i]]<-out[[i]]%>%
+        out[[i]]<-out[[i]] %>%
           dplyr::select(-base::ncol(.))
 
       }# End: se não quiser adicionar o Label na saída
@@ -233,15 +244,15 @@ FUN_MRG <- function(
 
   }# End: Executando para cada variável
 
-  if( base::length(all_warning)>0 )
+  if( base::length(all_warning) > 0 )
   {# Start: tiver algum warning, printar
 
-    base::warning(all_warning)
+    base::warning(all_warning, call. = FALSE)
 
   }# End: tiver algum warning, printar
 
-  # Retorna os resultados e os registros de variáveis isoladas (Log_MRG)
-  return(base::list(Resultado_MRG=out,Log_MRG=Log_MRG))
+  # Retorna os resultados e os registros de mrg (Log_MRG)
+  return(base::list(Resultado_MRG = out, Log_MRG = Log_MRG))
 
 }# End: FUN_MRG
 

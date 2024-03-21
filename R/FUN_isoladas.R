@@ -225,7 +225,7 @@ FUN_isoladas <- function(
   if( base::length(all_warning)>0 )
   {# Start: tiver algum warning, printar
 
-    base::warning(all_warning)
+    base::warning(all_warning, call. = FALSE)
 
   }# End: tiver algum warning, printar
 
