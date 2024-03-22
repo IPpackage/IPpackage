@@ -1,5 +1,5 @@
-#' @title pos_processamento_mrg_media_das_medias
-#' @name pos_processamento_mrg_media_das_medias
+#' @title PosProce_meanofmean
+#' @name PosProce_meanofmean
 #'
 #' @description A função tem a finalidade de recalcular a coluna 'media' e
 #' 'media_peso' do processamento. A abordagem utilizada implica em calcular a
@@ -22,6 +22,7 @@
 #' @examples
 #'
 #'library(dplyr)
+#'library(IPpackage)
 #'#Data.frame com resultado das médias em um processamento
 #'Medias <- data.frame(
 #'  splits = rep(1:2, each = 6)
@@ -53,7 +54,7 @@
 #'   30.17201744, 26.16864626, NA, 46.99119315, 46.40394373)
 #')
 #'#Calculando média das médias com a função
-#'novo_medias = pos_processamento_mrg_media_das_medias(
+#'novo_medias = PosProce_meanofmean(
 #'  arquivo_medias = Medias,
 #'  variaveis_recalcular = list(
 #'    "v29imrg" = c("v29i", "v30i")
@@ -66,11 +67,11 @@
 #'
 #'
 
-pos_processamento_mrg_media_das_medias <- function(
+PosProce_meanofmean <- function(
     arquivo_medias,
     variaveis_recalcular,
     tipo = "Medias" #ou "Cruz_M"
-){# Start: pos_processamento_mrg_media_das_medias
+){# Start: PosProce_meanofmean
   arquivo_medias = arquivo_medias %>%
     dplyr::group_by(splits) %>%
     dplyr::group_split() %>%
@@ -261,7 +262,7 @@ pos_processamento_mrg_media_das_medias <- function(
   #Retornar o arquivo com as médias alteradas
   base::return(arquivo_medias)
 
-}# End: pos_processamento_mrg_media_das_medias
+}# End: PosProce_meanofmean
 
 
 
