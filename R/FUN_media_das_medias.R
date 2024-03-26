@@ -82,8 +82,7 @@
 #'
 #' @export
 #'
-#'
-#'
+
 FUN_media_das_medias <- function(
     TABELA,
     lista_variaveis
