@@ -70,12 +70,12 @@ FUN_MRG <- function(
 
 
   for ( i in base::seq_along(out) )
-    {# Start: Executando para cada variável
+  {# Start: Executando para cada variável
 
     erro=0
 
     if( erro==0 )
-      {# Start: se não houver erro, executar
+    {# Start: se não houver erro, executar
 
       # Seleciona os rótulos do MRG do dicionário
       labels <- DICIONARIO %>%
@@ -93,15 +93,15 @@ FUN_MRG <- function(
         dplyr::select(dplyr::all_of(lista_variaveis[[i]]), peso) %>%
         dplyr::mutate("n_base" = base::ifelse(
           test = base::rowSums(!base::is.na(dplyr::across(dplyr::all_of(lista_variaveis[[i]])))) > 0, 1, 0
-          )
+        )
         ) %>%
         dplyr::mutate("n_base" = base::sum(`n_base`)) %>%
         dplyr::mutate("pct_base" = (100 * `n_base`) / base::nrow(.)) %>%
         dplyr::mutate("n_base_peso" = base::ifelse(
           test = base::rowSums(
             !base::is.na(dplyr::across(dplyr::all_of(lista_variaveis[[i]])))
-            ) > 0, peso, 0
-          )
+          ) > 0, peso, 0
+        )
         ) %>%
         dplyr::mutate("n_base_peso" = base::sum(`n_base_peso`)) %>%
         dplyr::mutate("pct_base_peso" = (100 * `n_base_peso`) / base::sum(peso)) %>%
@@ -130,7 +130,7 @@ FUN_MRG <- function(
         dplyr::mutate(dplyr::across(c("n", "n_peso", "pct", "pct_peso"), base::as.double)) %>%
         purrr::map_df(.f = ~ c(., base::ifelse(
           base::is.numeric(.), base::sum(., na.rm = TRUE), "Total"
-          ))
+        ))
         ) %>%
         base::rbind(
           base::list(
@@ -140,8 +140,8 @@ FUN_MRG <- function(
             base[[i]]$pct_base,
             base[[i]]$pct_base_peso,
             "Base"
-            )
           )
+        )
 
       {# Start: Identificando e colocando os warnings no 'Log_MRG'
 
@@ -229,7 +229,7 @@ FUN_MRG <- function(
 
         }# End: Motivo para algum warning
 
-      }# End: Identificando e colocando os warnings no 'Log_MRG'
+        }# End: Identificando e colocando os warnings no 'Log_MRG'
 
       if( adc_labels == FALSE )
       {# Start: se não quiser adicionar o Label na saída
@@ -252,7 +252,12 @@ FUN_MRG <- function(
   }# End: tiver algum warning, printar
 
   # Retorna os resultados e os registros de mrg (Log_MRG)
-  return(base::list(Resultado_MRG = out, Log_MRG = Log_MRG))
+  return(
+    base::list(
+      Resultado_MRG = out,
+      Log_MRG = Log_MRG
+    )
+  )
 
 }# End: FUN_MRG
 
