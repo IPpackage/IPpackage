@@ -30,7 +30,8 @@ Consute o livro para mais detalhes e exemplos.
 
 library(dplyr)
 library(IPpackage)
-#Data.frame com resultado das médias em um processamento
+
+# Data.frame com resultado das médias em um processamento
 Medias <- data.frame(
  splits = rep(1:2, each = 6)
  ,variavel = rep(c("v29imrg","v29i", "v30i", "v31imrg", "v31i", "v32i"),
@@ -60,8 +61,9 @@ Medias <- data.frame(
  ,cv = c(NA, 33.37615474, 32.59990734, NA, 53.36259173, 52.36237087, NA,
   30.17201744, 26.16864626, NA, 46.99119315, 46.40394373)
 )
-#Calculando média das médias com a função
-novo_medias = PosProce_meanofmean(
+
+# Calculando média das médias com a função
+novo_medias = IPpackage::PosProce_meanofmean(
  arquivo_medias = Medias,
  variaveis_recalcular = list(
    "v29imrg" = c("v29i", "v30i")

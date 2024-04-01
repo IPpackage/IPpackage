@@ -32,7 +32,7 @@ library(stringr)
 library(IPpackage)
 
 # Var isolada vs mrg fechando na var isolada
-FUN_cruzaMRG(
+IPpackage::FUN_cruzaMRG(
  TABELA = IPpackage::IPpackage_exemplo,
  DICIONARIO = IPpackage::IPpackage_dicionario,
  var1 = list("v1"="v1"),
@@ -41,7 +41,7 @@ FUN_cruzaMRG(
 )
 
 # Var isolada vs mrg fechando no mrg
-FUN_cruzaMRG(
+IPpackage::FUN_cruzaMRG(
  TABELA = IPpackage::IPpackage_exemplo,
  DICIONARIO = IPpackage::IPpackage_dicionario,
  var1 = list("v1"="v1"),
@@ -67,7 +67,7 @@ DICIONARIO = base::rbind(
 )
 
 # Fechando em 'v3mrg
-FUN_cruzaMRG(
+IPpackage::FUN_cruzaMRG(
  TABELA = TABELA,
  DICIONARIO = DICIONARIO,
  var1 = list("v13mrg"=c("v13_1","v13_2")),
@@ -76,7 +76,7 @@ FUN_cruzaMRG(
 )
 
 # Fechando em 'v13mrg
-FUN_cruzaMRG(
+IPpackage::FUN_cruzaMRG(
  TABELA = TABELA,
  DICIONARIO = DICIONARIO,
  var1 = list("v13mrg"=c("v13_1","v13_2")),

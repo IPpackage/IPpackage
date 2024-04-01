@@ -18,7 +18,7 @@
 #' @examples
 #'
 #' #Uma variável
-#' FUN_isoladas(
+#' IPpackage::FUN_isoladas(
 #'   TABELA=IPpackage::IPpackage_exemplo,
 #'   DICIONARIO=IPpackage::IPpackage_dicionario,
 #'   variaveis=c("v1"),
@@ -26,7 +26,7 @@
 #' )
 #'
 #' #Mais de uma variável
-#' FUN_isoladas(
+#' IPpackage::FUN_isoladas(
 #'   TABELA=IPpackage::IPpackage_exemplo,
 #'   DICIONARIO=IPpackage::IPpackage_dicionario,
 #'   variaveis=c("v1","v2"),
@@ -34,7 +34,7 @@
 #' )
 #'
 #' #Todas as variáveis
-#' FUN_isoladas(
+#' IPpackage::FUN_isoladas(
 #'   TABELA=IPpackage::IPpackage_exemplo,
 #'   DICIONARIO=IPpackage::IPpackage_dicionario,
 #'   variaveis=colnames(IPpackage::IPpackage_exemplo),

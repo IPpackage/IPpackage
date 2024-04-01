@@ -20,7 +20,7 @@
 #'library(IPpackage)
 #'
 #'# Variável na coluna: v1
-#'FUN_cruzaVar(
+#'IPpackage::FUN_cruzaVar(
 #'  TABELA = IPpackage::IPpackage_exemplo,
 #'  DICIONARIO = IPpackage::IPpackage_dicionario,
 #'  var1 = "v1",
@@ -29,7 +29,7 @@
 #')
 #'
 #'# Variável na coluna: v10
-#'FUN_cruzaVar(
+#'IPpackage::FUN_cruzaVar(
 #'  TABELA = IPpackage::IPpackage_exemplo,
 #'  DICIONARIO = IPpackage::IPpackage_dicionario,
 #'  var1 = "v1",
@@ -54,6 +54,7 @@ FUN_cruzaVar <- function(
   {# Start: armazenar resultados e definições iniciais
 
     `%nin%` = base::Negate(`%in%`)
+
     var_naofecha <- c(var1, var2) %>%
       base::subset(. %nin% var_fecha)
 

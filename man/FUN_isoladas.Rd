@@ -24,7 +24,7 @@ Consute o livro para mais detalhes e exemplos.
 \examples{
 
 #Uma variável
-FUN_isoladas(
+IPpackage::FUN_isoladas(
   TABELA=IPpackage::IPpackage_exemplo,
   DICIONARIO=IPpackage::IPpackage_dicionario,
   variaveis=c("v1"),
@@ -32,7 +32,7 @@ FUN_isoladas(
 )
 
 #Mais de uma variável
-FUN_isoladas(
+IPpackage::FUN_isoladas(
   TABELA=IPpackage::IPpackage_exemplo,
   DICIONARIO=IPpackage::IPpackage_dicionario,
   variaveis=c("v1","v2"),
@@ -40,7 +40,7 @@ FUN_isoladas(
 )
 
 #Todas as variáveis
-FUN_isoladas(
+IPpackage::FUN_isoladas(
   TABELA=IPpackage::IPpackage_exemplo,
   DICIONARIO=IPpackage::IPpackage_dicionario,
   variaveis=colnames(IPpackage::IPpackage_exemplo),

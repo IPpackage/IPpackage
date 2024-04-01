@@ -48,7 +48,7 @@ DICIONARIO = IPpackage::IPpackage_dicionario \%>\%
  )
 
 #MRG sem erro
-FUN_Citou(
+IPpackage::FUN_Citou(
  TABELA = TABELA,
  DICIONARIO = DICIONARIO,
  lista_variaveis = list("v3mrg" = c("v4","v5","v6","v7","v8","v9","v10_o","v11")),
@@ -57,7 +57,7 @@ FUN_Citou(
 #MRG com erro:
 #variável que tem código diferente de 1 e/ou 2
 #enunciado de alguma variável faltando
-FUN_Citou(
+IPpackage::FUN_Citou(
  TABELA = TABELA,
  DICIONARIO = DICIONARIO\%>\%
    dplyr::mutate(

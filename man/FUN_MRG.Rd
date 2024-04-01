@@ -23,8 +23,8 @@ Consute o livro para mais detalhes e exemplos.
 }
 \examples{
 
-#MRG sem erro
-FUN_MRG(
+# MRG sem erro
+IPpackage::FUN_MRG(
  TABELA=IPpackage::IPpackage_exemplo,
  DICIONARIO=IPpackage::IPpackage_dicionario,
  lista_variaveis=list("v3mrg"=c("v3_1","v3_2","v3_3")),
@@ -32,16 +32,18 @@ FUN_MRG(
 )
 
 library(dplyr)
-#MRG sem a variável no DICIONARIO
-FUN_MRG(
+
+# MRG sem a variável no DICIONARIO
+IPpackage::FUN_MRG(
  TABELA=IPpackage::IPpackage_exemplo,
  DICIONARIO=IPpackage::IPpackage_dicionario\%>\%dplyr::mutate(opcao_cod=ifelse(
    opcao_variavel=="v3mrg",NA,opcao_cod)),
  lista_variaveis=list("v3mrg"=c("v3_1","v3_2","v3_3")),
  adc_labels = TRUE
 )
-#MRG com a variável no DICIONARIO, mas faltando Label
-FUN_MRG(
+
+# MRG com a variável no DICIONARIO, mas faltando Label
+IPpackage::FUN_MRG(
  TABELA=IPpackage::IPpackage_exemplo,
  DICIONARIO=IPpackage::IPpackage_dicionario\%>\%
    dplyr::filter(opcao_variavel!="v3mrg"),

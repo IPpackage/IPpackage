@@ -22,7 +22,7 @@
 #'library(IPpackage)
 #'
 #'# Normal
-#'FUN_media_das_medias(
+#'IPpackage::FUN_media_das_medias(
 #'  TABELA = IPpackage::IPpackage_exemplo
 #'  ,lista_variaveis = list(
 #'    "v2" = "v2",
@@ -31,8 +31,9 @@
 #'    "v11" = "v11"
 #'  )
 #')
+#'
 #'# warning1 (ao forçar virar numérica, algo virou NA)
-#'FUN_media_das_medias(
+#'IPpackage::FUN_media_das_medias(
 #'  TABELA = IPpackage::IPpackage_exemplo %>%
 #'    dplyr::mutate(v10 = ifelse(id == 4, "texto", v10))
 #'  ,lista_variaveis = list(
@@ -42,8 +43,9 @@
 #'    "v11" = "v11"
 #'  )
 #')
+#'
 #'# warning2 (converteu em númerico sem problemas)
-#'FUN_media_das_medias(
+#'IPpackage::FUN_media_das_medias(
 #'  TABELA = IPpackage::IPpackage_exemplo %>%
 #'    dplyr::mutate(v10 = as.character(v10))
 #'  ,lista_variaveis=list(
@@ -53,8 +55,9 @@
 #'    "v11" = "v11"
 #'  )
 #')
+#'
 #'# warning3 (se a variável só tiver NA)
-#'FUN_media_das_medias(
+#'IPpackage::FUN_media_das_medias(
 #'  TABELA = IPpackage::IPpackage_exemplo %>%
 #'    dplyr::mutate(v10 = NA)
 #'  ,lista_variaveis = list(
@@ -64,8 +67,9 @@
 #'    "v11" = "v11"
 #'  )
 #')
+#'
 #'# Todos os warnings
-#'FUN_media_das_medias(
+#'IPpackage::FUN_media_das_medias(
 #'  TABELA = IPpackage::IPpackage_exemplo %>%
 #'    dplyr::mutate(
 #'      v2 = NA

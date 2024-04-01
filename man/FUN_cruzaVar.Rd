@@ -30,7 +30,7 @@ library(dplyr)
 library(IPpackage)
 
 # Variável na coluna: v1
-FUN_cruzaVar(
+IPpackage::FUN_cruzaVar(
  TABELA = IPpackage::IPpackage_exemplo,
  DICIONARIO = IPpackage::IPpackage_dicionario,
  var1 = "v1",
@@ -39,7 +39,7 @@ FUN_cruzaVar(
 )
 
 # Variável na coluna: v10
-FUN_cruzaVar(
+IPpackage::FUN_cruzaVar(
  TABELA = IPpackage::IPpackage_exemplo,
  DICIONARIO = IPpackage::IPpackage_dicionario,
  var1 = "v1",
