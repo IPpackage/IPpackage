@@ -2,6 +2,7 @@
 
 export(FUN_Citou)
 export(FUN_MRG)
+export(FUN_cruzaMRG)
 export(FUN_cruzaVar)
 export(FUN_isoladas)
 export(FUN_media)
@@ -27,3 +28,5 @@ importFrom(Hmisc,wtd.var)
 importFrom(purrr,imap)
 importFrom(purrr,map_df)
 importFrom(stringr,str_c)
+importFrom(stringr,str_subset)
+importFrom(tidyr,pivot_longer)
