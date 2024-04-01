@@ -2,6 +2,7 @@
 
 export(FUN_Citou)
 export(FUN_MRG)
+export(FUN_cruzaVar)
 export(FUN_isoladas)
 export(FUN_media)
 export(FUN_media_das_medias)

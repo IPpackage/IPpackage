@@ -4,5 +4,6 @@ utils::globalVariables(
     'value','opcao_variavel','opcao_cod','opcao_label','pergunta_enunciado',
     'pergunta_enunciado_mrg','.','','peso','n_base','n_base_peso','pct_base',
     'pct_base_peso','n_peso','descricao','Respostas','splits','desvp','desvp_peso'
+    ,'varlin','varcol','codlin','codcol','pct','pct_peso','labcol','lablin'
     ))
 
