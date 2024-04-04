@@ -28,45 +28,45 @@ IPpackage::FUN_media(
  TABELA = IPpackage::IPpackage_exemplo
  ,lista_variaveis = list(
    "v2" = "v2",
-   "v10mrg" = c("v10", "v11"),
-   "v10" = "v10",
-   "v11" = "v11"
+   "v17mrg" = c("v17", "v18"),
+   "v17" = "v17",
+   "v18" = "v18"
  )
 )
 
 # warning1 (ao forçar virar numérica, algo virou NA)
 IPpackage::FUN_media(
  TABELA = IPpackage::IPpackage_exemplo \%>\%
-   dplyr::mutate(v10 = ifelse(id == 4, "texto", v10))
+   dplyr::mutate(v17 = ifelse(id == 4, "texto", v17))
  ,lista_variaveis = list(
    "v2" = "v2",
-   "v10mrg" = c("v10", "v11"),
-   "v10" = "v10",
-   "v11" = "v11"
+   "v17mrg" = c("v17", "v18"),
+   "v17" = "v17",
+   "v18" = "v18"
  )
 )
 
 # warning2 (converteu em númerico sem problemas)
 IPpackage::FUN_media(
  TABELA = IPpackage::IPpackage_exemplo \%>\%
-   dplyr::mutate(v10 = as.character(v10))
+   dplyr::mutate(v17 = as.character(v17))
  ,lista_variaveis=list(
    "v2" = "v2",
-   "v10mrg" = c("v10", "v11"),
-   "v10" = "v10",
-   "v11" = "v11"
+   "v17mrg" = c("v17", "v18"),
+   "v17" = "v17",
+   "v18" = "v18"
  )
 )
 
 # warning3 (se a variável só tiver NA)
-FUN_media(
+IPpackage::FUN_media(
  TABELA = IPpackage::IPpackage_exemplo \%>\%
-   dplyr::mutate(v10 = NA)
+   dplyr::mutate(v17 = NA)
  ,lista_variaveis = list(
    "v2" = "v2",
-   "v10mrg" = c("v10", "v11"),
-   "v10" = "v10",
-   "v11" = "v11"
+   "v17mrg" = c("v17", "v18"),
+   "v17" = "v17",
+   "v18" = "v18"
  )
 )
 
@@ -75,14 +75,14 @@ IPpackage::FUN_media(
  TABELA = IPpackage::IPpackage_exemplo \%>\%
    dplyr::mutate(
      v2 = NA
-     ,v10 = ifelse(id == 4, "texto", v10)
-     ,v11 =as.character(v12)
+     ,v17 = ifelse(id == 4, "texto", v17)
+     ,v18 =as.character(v18)
    )
  ,lista_variaveis = list(
    "v2" = "v2",
-   "v10mrg" = c("v10", "v11"),
-   "v10" = "v10",
-   "v11" = "v11"
+   "v17mrg" = c("v17", "v18"),
+   "v17" = "v17",
+   "v18" = "v18"
  )
 )
 
