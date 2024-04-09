@@ -26,7 +26,7 @@ library(IPpackage)
 # Normal
 IPpackage::FUN_media(
  TABELA = IPpackage::IPpackage_exemplo
- ,lista_variaveis = list(
+ ,lista_variaveis = base::list(
    "v2" = "v2",
    "v17mrg" = c("v17", "v18"),
    "v17" = "v17",
@@ -37,8 +37,8 @@ IPpackage::FUN_media(
 # warning1 (ao forçar virar numérica, algo virou NA)
 IPpackage::FUN_media(
  TABELA = IPpackage::IPpackage_exemplo \%>\%
-   dplyr::mutate(v17 = ifelse(id == 4, "texto", v17))
- ,lista_variaveis = list(
+   dplyr::mutate(v17 = base::ifelse(id == 4, "texto", v17))
+ ,lista_variaveis = base::list(
    "v2" = "v2",
    "v17mrg" = c("v17", "v18"),
    "v17" = "v17",
@@ -49,8 +49,8 @@ IPpackage::FUN_media(
 # warning2 (converteu em númerico sem problemas)
 IPpackage::FUN_media(
  TABELA = IPpackage::IPpackage_exemplo \%>\%
-   dplyr::mutate(v17 = as.character(v17))
- ,lista_variaveis=list(
+   dplyr::mutate(v17 = base::as.character(v17))
+ ,lista_variaveis = base::list(
    "v2" = "v2",
    "v17mrg" = c("v17", "v18"),
    "v17" = "v17",
@@ -62,7 +62,7 @@ IPpackage::FUN_media(
 IPpackage::FUN_media(
  TABELA = IPpackage::IPpackage_exemplo \%>\%
    dplyr::mutate(v17 = NA)
- ,lista_variaveis = list(
+ ,lista_variaveis = base::list(
    "v2" = "v2",
    "v17mrg" = c("v17", "v18"),
    "v17" = "v17",
@@ -75,10 +75,10 @@ IPpackage::FUN_media(
  TABELA = IPpackage::IPpackage_exemplo \%>\%
    dplyr::mutate(
      v2 = NA
-     ,v17 = ifelse(id == 4, "texto", v17)
-     ,v18 =as.character(v18)
+     ,v17 = base::ifelse(id == 4, "texto", v17)
+     ,v18 = base::as.character(v18)
    )
- ,lista_variaveis = list(
+ ,lista_variaveis = base::list(
    "v2" = "v2",
    "v17mrg" = c("v17", "v18"),
    "v17" = "v17",

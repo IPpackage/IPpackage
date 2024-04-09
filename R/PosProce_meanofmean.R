@@ -25,9 +25,9 @@
 #'library(IPpackage)
 #'
 #'# Data.frame com resultado das médias em um processamento
-#'Medias <- data.frame(
-#'  splits = rep(1:2, each = 6)
-#'  ,variavel = rep(c("v29imrg","v29i", "v30i", "v31imrg", "v31i", "v32i"),
+#'Medias <- base::data.frame(
+#'  splits = base::rep(1:2, each = 6)
+#'  ,variavel = base::rep(c("v29imrg","v29i", "v30i", "v31imrg", "v31i", "v32i"),
 #'   times = 2)
 #'  ,media = c(0, 71.02880658, 71.79012346, 0, 54.49834163, 53.64318567, 0,
 #'   70.20933977, 73.51046699, 0, 57.48792271, 52.91311014)
@@ -58,7 +58,7 @@
 #'# Calculando média das médias com a função
 #'novo_medias = IPpackage::PosProce_meanofmean(
 #'  arquivo_medias = Medias,
-#'  variaveis_recalcular = list(
+#'  variaveis_recalcular = base::list(
 #'    "v29imrg" = c("v29i", "v30i")
 #'    ,"v31imrg" = c("v31i", "v32i")
 #'  ),

@@ -24,57 +24,41 @@
 #'library(stringr)
 #'library(IPpackage)
 #'
-#'# Var isolada vs mrg fechando na var isolada
+#'# Var isolada vs mrg fechando na var isolada----------------------------------
 #'IPpackage::FUN_cruzaMRG(
 #'  TABELA = IPpackage::IPpackage_exemplo,
 #'  DICIONARIO = IPpackage::IPpackage_dicionario,
-#'  var1 = list("v1"="v1"),
-#'  varMRG = list("v3mrg" = c("v3_1","v3_2","v3_3")),
+#'  var1 = base::list("v1"="v1"),
+#'  varMRG = base::list("v3mrg" = c("v3_1","v3_2","v3_3")),
 #'  var_fecha = "v1"
 #')
 #'
-#'# Var isolada vs mrg fechando no mrg
+#'# Var isolada vs mrg fechando no mrg------------------------------------------
 #'IPpackage::FUN_cruzaMRG(
 #'  TABELA = IPpackage::IPpackage_exemplo,
 #'  DICIONARIO = IPpackage::IPpackage_dicionario,
-#'  var1 = list("v1"="v1"),
-#'  varMRG = list("v3mrg" = c("v3_1","v3_2","v3_3")),
+#'  var1 = base::list("v1"="v1"),
+#'  varMRG = base::list("v3mrg" = c("v3_1","v3_2","v3_3")),
 #'  var_fecha = "v3mrg"
 #')
-#'# mrg vs mrg
-#'
-#'TABELA = IPpackage::IPpackage_exemplo %>%
-#'  dplyr::mutate(
-#'    v13_1 = v3_1
-#'    ,v13_2 = v3_2
-#'  )
-#'
-#'DICIONARIO = base::rbind(
-#'  IPpackage::IPpackage_dicionario,
-#'  IPpackage::IPpackage_dicionario %>%
-#'    dplyr::filter(opcao_variavel == "v3mrg") %>%
-#'    dplyr::mutate(
-#'      opcao_variavel = "v13mrg",
-#'      pergunta_enunciado = "v13mrg - Enunciado (MRG)"
-#'    )
-#')
+#'# mrg vs mrg------------------------------------------------------------------
 #'
 #'# Fechando em 'v3mrg
 #'IPpackage::FUN_cruzaMRG(
-#'  TABELA = TABELA,
-#'  DICIONARIO = DICIONARIO,
-#'  var1 = list("v13mrg"=c("v13_1","v13_2")),
-#'  varMRG = list("v3mrg" = c("v3_1","v3_2","v3_3")),
+#'  TABELA = IPpackage::IPpackage_exemplo,
+#'  DICIONARIO = IPpackage::IPpackage_dicionario,
+#'  var1 = base::list("v19mrg"=c("v19_1","v19_2")),
+#'  varMRG = base::list("v3mrg" = c("v3_1","v3_2","v3_3")),
 #'  var_fecha = "v3mrg"
 #')
 #'
-#'# Fechando em 'v13mrg
+#'# Fechando em 'v19mrg
 #'IPpackage::FUN_cruzaMRG(
-#'  TABELA = TABELA,
-#'  DICIONARIO = DICIONARIO,
-#'  var1 = list("v13mrg"=c("v13_1","v13_2")),
-#'  varMRG = list("v3mrg" = c("v3_1","v3_2","v3_3")),
-#'  var_fecha = "v13mrg"
+#'  TABELA = IPpackage::IPpackage_exemplo,
+#'  DICIONARIO = IPpackage::IPpackage_dicionario,
+#'  var1 = base::list("v19mrg"=c("v19_1","v19_2")),
+#'  varMRG = base::list("v3mrg" = c("v3_1","v3_2","v3_3")),
+#'  var_fecha = "v19mrg"
 #')
 #'
 #' @export

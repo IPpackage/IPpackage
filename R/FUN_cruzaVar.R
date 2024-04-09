@@ -23,18 +23,18 @@
 #'IPpackage::FUN_cruzaVar(
 #'  TABELA = IPpackage::IPpackage_exemplo,
 #'  DICIONARIO = IPpackage::IPpackage_dicionario,
-#'  var1 = "v1",
-#'  var2 = "v10",
-#'  var_fecha = "v1"
+#'  var1 = "v15",
+#'  var2 = "v16",
+#'  var_fecha = "v15"
 #')
 #'
 #'# Variável na coluna: v10
 #'IPpackage::FUN_cruzaVar(
 #'  TABELA = IPpackage::IPpackage_exemplo,
 #'  DICIONARIO = IPpackage::IPpackage_dicionario,
-#'  var1 = "v1",
-#'  var2 = "v10",
-#'  var_fecha = "v10"
+#'  var1 = "v15",
+#'  var2 = "v16",
+#'  var_fecha = "v16"
 #')
 #'
 #'

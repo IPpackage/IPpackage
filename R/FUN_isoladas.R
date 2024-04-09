@@ -111,7 +111,7 @@ FUN_isoladas <- function(
         dplyr::filter(!base::is.na(.[[1]])) %>%
         dplyr::mutate("pct" = (100 * n / base::sum(n)), "pct_peso" = (100 * n_peso / base::sum(n_peso))) %>%
         dplyr::mutate(dplyr::across(dplyr::all_of(var), base::as.character)) %>%
-        dplyr::full_join(labels, by = var) %>%
+        dplyr::full_join(labels %>% dplyr::filter(!is.na(.[[1]])), by = var) %>%
         dplyr::mutate(dplyr::across(c("n", "n_peso", "pct", "pct_peso"), ~ base::ifelse(base::is.na(.x), 0, .x))) %>%
         dplyr::arrange(base::match(.[[1]], stringr::str_sort(.[[1]], numeric = TRUE))) %>%
         dplyr::arrange(.[[1]] %in% c("-66","-666")) %>%

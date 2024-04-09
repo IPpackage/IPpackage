@@ -16,24 +16,24 @@ consistencia(
 }
 \arguments{
 \item{log_consistenia}{Se a variável em questão for a primeira a ser testada,
-'log_consistenia' é definida como 'NULL'; no entanto, se um arquivo no formato de
-saída dessa função já existir, 'log_consistenia' será o seu data.frame correspondente}
+'log_consistenia' é definida como 'NULL'; no entanto,  se um arquivo no formato de
+saída dessa função já existir,  'log_consistenia' será o seu data.frame correspondente}
 
 \item{x}{Banco de dados}
 
-\item{vars}{Variável ou, no caso de um MRG, vetor de variáveis}
+\item{vars}{Variável ou,  no caso de um MRG,  vetor de variáveis}
 
-\item{nome}{Se vars for um vetor -MRG, este será o nome a ser atribuído a esse
+\item{nome}{Se vars for um vetor -MRG,  este será o nome a ser atribuído a esse
 conjunto de variáveis}
 
-\item{regra}{Regra de entrada. Obs.: se a base for 100 porcento, atribua o valor '100'}
+\item{regra}{Regra de entrada. Obs.: se a base for 100 porcento,  atribua o valor '100'}
 
 \item{pode_falta}{'TRUE' para indicar a possibilidade de respostas ausentes;
 'FALSE' para indicar a ausência de tolerância para respostas não fornecidas.}
 
 \item{show}{Indicar as variáveis a serem impressas em caso de erro -serão
 exibidas apenas as variáveis indicadas e as linhas com erros; 'FALSE' para não
-imprimir as linhas, mesmo na presença de erros.}
+imprimir as linhas,  mesmo na presença de erros.}
 }
 \description{
 A função foi desenvolvida para avaliar se todos os indivíduos
@@ -47,34 +47,68 @@ Consute o livro para mais detalhes e exemplos.
 data=IPpackage::IPpackage_exemplo
 
 ##Tudo OK
-log_consistenia=IPpackage::consistencia(
-  log_consistenia=NULL,x=data,vars="v1",regra="100",pode_falta=FALSE,show=c("id","v1"))
+log_consistenia = IPpackage::consistencia(
+ log_consistenia = NULL,
+ x = data,
+ vars = "v1",
+ regra = "100",
+ pode_falta = FALSE,
+ show = c("id", "v1")
+)
 
-log_consistenia=IPpackage::consistencia(
-  log_consistenia=log_consistenia,x=data,vars="v2",regra="v1\%nin\%c(1)",pode_falta=FALSE,
-  show=c("id","v1","v2"))
+log_consistenia = IPpackage::consistencia(
+ log_consistenia = log_consistenia,
+ x = data,
+ vars = "v2",
+ regra = "v1\%nin\%c(1)",
+ pode_falta = FALSE,
+ show = c("id", "v1", "v2")
+)
 
-log_consistenia=IPpackage::consistencia(
-  log_consistenia=log_consistenia,x=data,vars=paste0("v3_",1:3),regra="v1\%nin\%c(1)",
-  pode_falta=TRUE,show=c("id","v1","v2"),nome="G003")
+log_consistenia = IPpackage::consistencia(
+ log_consistenia = log_consistenia,
+ x = data,
+ vars = paste0("v3_", 1:3),
+ regra = "v1\%nin\%c(1)",
+ pode_falta = TRUE,
+ show = c("id", "v1", "v2"),
+ nome = "G003"
+ )
 
-log_consistenia=IPpackage::consistencia(
-  log_consistenia=log_consistenia,x=data,vars=paste0("v",4:11),regra="v1\%nin\%c(1)",
-  pode_falta=TRUE,show=c("id","v1","v2"))
+log_consistenia = IPpackage::consistencia(
+ log_consistenia = log_consistenia,
+ x = data,
+ vars = c("v4",  "v5",  "v6",  "v7",  "v8",  "v9",  "v10_1",  "v10_2",  "v11"),
+ regra = "v1\%nin\%c(1)",
+ pode_falta = TRUE,
+ show = c("id", "v1", "v2")
+)
 
-##Com Erro
-data$v1[3]=NA;data$v1[4]<-1
+log_consistenia = IPpackage::consistencia(
+ log_consistenia = NULL,
+ x = data,
+ vars = "v1",
+ regra = "100",
+ pode_falta = FALSE,
+ show = c("id", "v1", "v2")
+)
 
-log_consistenia=IPpackage::consistencia(
-  log_consistenia=NULL,x=data,vars="v1",regra="100",pode_falta=FALSE,
-  show=c("id","v1","v2"))
+log_consistenia = IPpackage::consistencia(
+ log_consistenia = log_consistenia,
+ x = data,
+ vars = "v2",
+ regra = "v1\%nin\%c(1)",
+ pode_falta = FALSE,
+ show = c("id", "v1", "v2")
+)
 
-log_consistenia=IPpackage::consistencia(
-  log_consistenia=log_consistenia,x=data,vars="v2",regra="v1\%nin\%c(1)",pode_falta=FALSE,
-  show=c("id","v1","v2"))
-
-log_consistenia=IPpackage::consistencia(
-  log_consistenia=log_consistenia,x=data,vars=paste0("v3_",1:3),regra="v1\%nin\%c(1)",
-  pode_falta=TRUE,show=c("id","v1",paste0("v3_",1:3)),nome="G003")
+log_consistenia = IPpackage::consistencia(
+ log_consistenia = log_consistenia,
+ x = data, vars = paste0("v3_", 1:3),
+ regra = "v1\%nin\%c(1)",
+ pode_falta = TRUE,
+ show = c("id", "v1", paste0("v3_", 1:3)),
+ nome = "G003"
+ )
 
 }

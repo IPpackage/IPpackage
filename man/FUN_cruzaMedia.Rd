@@ -17,7 +17,7 @@ FUN_cruzaMedia(TABELA, DICIONARIO, var1, ind)
 }
 \description{
 Pivota e depois calcula a média (ponderada e não ponderada) da
-variável indicada em 'ind' pela variável indicada em 'var1'.
+variável indicada em 'ind' cruzada pela variável indicada em 'var1'.
 }
 \details{
 Consute o livro para mais detalhes e exemplos.
@@ -35,8 +35,8 @@ library(IPpackage)
 IPpackage::FUN_cruzaMedia(
  TABELA = IPpackage::IPpackage_exemplo,
  DICIONARIO = IPpackage::IPpackage_dicionario,
- var1 = list("v15mrg" = c("v15", "v16")),
- ind = list("v17mrg" = c("v17", "v18"))
+ var1 = base::list("v15mrg" = c("v15", "v16")),
+ ind = base::list("v17mrg" = c("v17", "v18"))
 ) \%>\%
  base::data.frame()
 
@@ -45,7 +45,7 @@ IPpackage::FUN_cruzaMedia(
  TABELA = IPpackage::IPpackage_exemplo,
  DICIONARIO = IPpackage::IPpackage_dicionario,
  var1 = "v15",
- ind = list("v17mrg" = c("v17", "v18"))
+ ind = base::list("v17mrg" = c("v17", "v18"))
 ) \%>\%
  base::data.frame()
 
@@ -53,7 +53,7 @@ IPpackage::FUN_cruzaMedia(
 IPpackage::FUN_cruzaMedia(
  TABELA = IPpackage::IPpackage_exemplo,
  DICIONARIO = IPpackage::IPpackage_dicionario,
- var1 = list("v15mrg" = c("v15", "v16")),
+ var1 = base::list("v15mrg" = c("v15", "v16")),
  ind = "v17"
 ) \%>\%
  base::data.frame()
@@ -77,6 +77,7 @@ IPpackage::FUN_cruzaMedia(
  var1 = "v16",
  ind = "v17"
 )
+
 # warning2 (converteu em númerico sem problemas)
 IPpackage::FUN_cruzaMedia(
  TABELA = IPpackage::IPpackage_exemplo \%>\%
@@ -85,6 +86,7 @@ IPpackage::FUN_cruzaMedia(
  var1 = "v16",
  ind = "v17"
 )
+
 # warning3 (se a variável só tiver NA)
 IPpackage::FUN_cruzaMedia(
  TABELA = IPpackage::IPpackage_exemplo \%>\%

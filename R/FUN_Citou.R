@@ -8,7 +8,7 @@
 #'
 #' @param TABELA Banco de dados a ser analisado.
 #' @param DICIONARIO Dicionário correspondente à TABELA.
-#' @param lista_variaveis Variáveis que serão pivotadas (vetor).
+#' @param lista_variaveis Variáveis que serão pivotadas.
 #' @param adc_labels Se adc_labels=TRUE, adicionar uma coluna com o label.
 #'
 #' @details Consute o livro para mais detalhes e exemplos.
@@ -21,47 +21,105 @@
 #' @examples
 #'
 #'#Passando 'outros' (v10) para do tipo citou/não citou
+#'library(IPpackage)
 #'library(dplyr)
 #'library(tidyr)
 #'TABELA = IPpackage::IPpackage_exemplo %>%
 #'  dplyr::mutate(
-#'    v10_o = dplyr::case_when(
-#'      is.na(v4) & is.na(v10) ~ NA,
-#'      is.na(v10) ~ 2,
-#'      !is.na(v10) ~ 1
+#'    v10_1_o = dplyr::case_when(
+#'      base::is.na(v4) & base::is.na(v10_1) ~ NA,
+#'      base::is.na(v10_1) ~ 2,
+#'      !base::is.na(v10_1) ~ 1
+#'    ),
+#'    v10_2_o = dplyr::case_when(
+#'      base::is.na(v4) & base::is.na(v10_2) ~ NA,
+#'      base::is.na(v10_2) ~ 2,
+#'      !base::is.na(v10_2) ~ 1
+#'    ),
+#'    v10_outros = dplyr::case_when(
+#'      base::is.na(v10_1_o) & base::is.na(v10_2_o) ~ NA,
+#'      v10_1_o == 1 | v10_2_o == 1 ~ 1,
+#'      TRUE ~ 2
 #'    )
 #'  )
+#'TABELA %>% dplyr::count(v4,v10_1,v10_1_o)
+#'TABELA %>% dplyr::count(v4,v10_2,v10_2_o)
+#'TABELA %>% dplyr::count(v4,v10_1_o,v10_2_o,v10_outros)
 #'
 #'DICIONARIO = IPpackage::IPpackage_dicionario %>%
-#'  rbind(
+#'  base::rbind(
 #'    tibble::tibble(
-#'      opcao_cod = c(1, 2),
-#'      opcao_label = c("Citou", "Não citou"),
-#'      opcao_variavel = rep("v10_o", 2),
-#'      pergunta_enunciado = rep("v10 - Citou (Outros)", 2)
+#'      opcao_cod = base::rep(c(1, 2), 3),
+#'      opcao_label = base::rep(c("Citou", "Não citou"), 3),
+#'      opcao_variavel = c(
+#'        base::rep("v10_outros", 2),
+#'        base::rep("v10_1_o", 2),
+#'        base::rep("v10_2_o", 2)
+#'      ),
+#'      pergunta_enunciado = c(
+#'        base::rep("v10_outros - Citou (Outros)", 2),
+#'        base::rep("v10_1_o - Citou (Outros)", 2),
+#'        base::rep("v10_2_o - Citou (Outros)", 2)
+#'      )
 #'    )
 #'  )
 #'
-#'#MRG sem erro
+#'# MRG e Isolada
 #'IPpackage::FUN_Citou(
 #'  TABELA = TABELA,
 #'  DICIONARIO = DICIONARIO,
-#'  lista_variaveis = list("v3mrg" = c("v4","v5","v6","v7","v8","v9","v10_o","v11")),
+#'  lista_variaveis = base::list(
+#'    "v4mrg" = c("v4", "v5", "v6", "v7", "v8", "v9", "v10_outros", "v11"),
+#'    "v10_1_o" = "v10_1_o"
+#'    ),
 #'  adc_labels = TRUE
 #')
-#'#MRG com erro:
-#'#variável que tem código diferente de 1 e/ou 2
-#'#enunciado de alguma variável faltando
+#'
+#'# Warning1: Código a mais encontrado em TABELA (diferente de 1, 2)
+#'IPpackage::FUN_Citou(
+#'  TABELA = TABELA,
+#'  DICIONARIO = DICIONARIO,
+#'  lista_variaveis = base::list(
+#'    "v4mrg" = c("v4", "v5", "v6", "v7", "v8", "v9", "v10_1", "v11"),
+#'    "v10_1" = "v10_1"
+#'    ),
+#'  adc_labels = TRUE
+#')
+#'
+#'# Warning2: Enunciado de alguma variável faltando
 #'IPpackage::FUN_Citou(
 #'  TABELA = TABELA,
 #'  DICIONARIO = DICIONARIO%>%
 #'    dplyr::mutate(
-#'      pergunta_enunciado=ifelse(opcao_variavel %in% c("v5","v11"),NA,pergunta_enunciado)
+#'      pergunta_enunciado = base::ifelse(
+#'        opcao_variavel %in% c("v5","v11"), NA, pergunta_enunciado
+#'        )
 #'    ),
-#'  lista_variaveis = list("v3mrg" = c("v4","v5","v6","v7","v8","v9","v10","v11")),
+#'  lista_variaveis = base::list(
+#'    "v4mrg" = c("v4", "v5", "v6", "v7", "v8", "v9", "v10_outros", "v11"),
+#'    "v5" = "v5",
+#'    "v11" = "v11"
+#'  ),
 #'  adc_labels = TRUE
 #')
 #'
+#'# Todos os warnings
+#'IPpackage::FUN_Citou(
+#'  TABELA = TABELA,
+#'  DICIONARIO = DICIONARIO%>%
+#'    dplyr::mutate(
+#'      pergunta_enunciado = base::ifelse(
+#'        opcao_variavel %in% c("v5","v11"), NA, pergunta_enunciado
+#'      )
+#'    ),
+#'  lista_variaveis = base::list(
+#'    "v4mrg" = c("v4", "v5", "v6", "v7", "v8", "v9", "v10_1", "v11"),
+#'    "v10_1" = "v10_1",
+#'    "v5" = "v5",
+#'    "v11" = "v11"
+#'  ),
+#'  adc_labels = TRUE
+#')
 #'
 #' @export
 #'
