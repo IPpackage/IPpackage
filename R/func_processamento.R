@@ -92,8 +92,7 @@
 #'  filtro = split %>%
 #'    dplyr::filter(split_id == all_splits[i]) %>%
 #'    dplyr::select(filtro_r) %>%
-#'    dplyr::pull() %>%
-#'    base::unique()
+#'    dplyr::pull()
 #'
 #'  # Usando o códifo para filtrar a TABELA
 #'  x1 = TABELA %>%
@@ -104,16 +103,14 @@
 #'          )
 #'        )
 #'      ) %>%
-#'    dplyr::mutate(id = as.numeric(id)) %>%
-#'    base::unique()
+#'    dplyr::mutate(id = as.numeric(id))
 #'
 #'  # Usando o códifo para filtrar a split_peso
 #'  x2 = split_peso %>%
 #'    dplyr::filter(split_id == all_splits[i]) %>%
 #'    dplyr::mutate(splits = split_id) %>%
 #'    dplyr::select(questionario_id, peso, splits) %>%
-#'    dplyr::mutate(questionario_id = as.numeric(questionario_id)) %>%
-#'    base::unique()
+#'    dplyr::mutate(questionario_id = as.numeric(questionario_id))
 #'
 #'  # Colocando o peso na Tabela
 #'  x = dplyr::left_join(
@@ -122,8 +119,7 @@
 #'    by = c("id" = "questionario_id")
 #'  ) %>%
 #'    base::unique() %>%
-#'    dplyr::mutate(splits = base::as.character(splits)) %>%
-#'    base::unique()
+#'    dplyr::mutate(splits = base::as.character(splits))
 #'
 #'  # Printando se tudo bateu ou não
 #'  base::cat(
@@ -148,7 +144,7 @@
 #'      " [", i, "/", base::length(all_splits), "]\n"
 #'    ) %>%
 #'      stringr::str_replace_all("TRUE", "\033[32mTRUE\033[0m") %>%
-#'      stringr::str_replace_all("FALSE", "\033[31mTRUE\033[0m")
+#'      stringr::str_replace_all("FALSE", "\033[31mFALSE\033[0m")
 #'  )
 #'
 #'  # Nestando o Banco de dados
