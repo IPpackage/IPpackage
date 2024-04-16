@@ -40,7 +40,7 @@ caso contrário, 'FALSE'.}
 }
 \description{
 A função foi desenvolvida para avaliar se todas as variáveis possuem
- Label e Enunciado no Dicionário.
+ Label e Enunciado no Dicionário e se existe algum código repetido.
 }
 \details{
 Consute o livro para mais detalhes e exemplos.
