@@ -283,6 +283,8 @@ consistencia_label <- function(
 
     {# Start: verificando se tem código duplicado
 
+      procurar = nome
+
       dic_filtrado = xdicionario %>%
         dplyr::filter(opcao_variavel %in% c(procurar)) %>%
         dplyr::mutate(
