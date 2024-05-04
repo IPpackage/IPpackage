@@ -104,7 +104,7 @@ consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FA
     consistencia_mrg<-function(log_consistenia,x,vars,regra,nome,show=show){
       if(regra!="100"){
         bd=x%>%dplyr::mutate(base=base::ifelse(base::eval(base::parse(text=regra)),1,0),base=base::ifelse(base::is.na(base),0,base),
-                             entrou=base::ifelse(base::eval(base::parse(text =base::paste0("!base::is.na(",vars,")",collapse = "|") )),1,0)
+                             entrou=base::ifelse(base::eval(base::parse(text =base::paste0("!base::is.na(`",vars,"`)",collapse = "|") )),1,0)
         )
         if(base::all(bd$entrou==bd$base)){
           log_consistenia<-base::rbind(log_consistenia,
@@ -126,7 +126,7 @@ consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FA
 
       }else{
         bd=x%>%dplyr::mutate(base=1,
-                             entrou=base::ifelse(base::eval(base::parse(text =base::paste0("!base::is.na(",vars,")",collapse = "|") )),1,0))
+                             entrou=base::ifelse(base::eval(base::parse(text =base::paste0("!base::is.na(`",vars,"`)",collapse = "|") )),1,0))
         #nao entrou e deveria
         ne_d=bd%>%dplyr::filter(entrou%in%c(0)&base%in%c(1))%>%base::nrow()
         if(ne_d>0){d=base::paste0(ne_d," nao entrou e deveria")}else{d="-"}
@@ -169,21 +169,21 @@ consistencia<-function(log_consistenia=NULL,x,vars,nome=NULL,regra,pode_falta=FA
   #Isoladas
   {
     for(v in 1:length(vars)){
-      var=vars[v]
+      var = vars[v]
       p=base::paste0("==============Var - ",var,"==============\n")
       IPpackage::print_cor(p,cor="amarelo",negrito=TRUE,data.frame=FALSE)
 
       if(regra=="100"){
         entrou=base::sum(!base::is.na(x[[var]]))
         base=base::nrow(x)
-        bd=x%>%dplyr::mutate(base=1,entrou=base::ifelse(!base::is.na(base::eval(base::parse(text =var))),1,0))
+        bd=x%>%dplyr::mutate(base=1,entrou=base::ifelse(!base::is.na(base::eval(base::parse(text =base::paste0("`",var,"`")))),1,0))
         if(entrou==base){resultado="OK";descricao="-"}else{
           resultado="Erro"
-          descricao=base::paste0(x%>%dplyr::filter(base::eval(base::parse(text =base::paste0("base::is.na(",var,")"))))%>%base::nrow()," nao entrou e deveria")
+          descricao=base::paste0(x%>%dplyr::filter(base::eval(base::parse(text =base::paste0("base::is.na(`",var,"`)"))))%>%base::nrow()," nao entrou e deveria")
         }
         log_consistenia<-base::rbind(log_consistenia,base::data.frame(var,entrou,base,resultado=resultado,descricao=descricao,regra=regra))
       }else{
-        bd=x%>%dplyr::mutate(base=base::ifelse(base::eval(base::parse(text =regra)),1,0),entrou=base::ifelse(!base::is.na(base::eval(base::parse(text =var))),1,0))
+        bd=x%>%dplyr::mutate(base=base::ifelse(base::eval(base::parse(text =regra)),1,0),entrou=base::ifelse(!base::is.na(base::eval(base::parse(text =base::paste0("`",var,"`")))),1,0))
 
         x$x_entrou_x=base::ifelse(!base::is.na(x[[var]]),1,0)
         x<-x%>%dplyr::mutate(x_base_x=base::ifelse(base::eval(base::parse(text =regra)),1,0));x$x_base_x<-base::ifelse(base::is.na(x$x_base_x),0,x$x_base_x)
