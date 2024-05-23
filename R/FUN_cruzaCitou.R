@@ -299,7 +299,7 @@ FUN_cruzaCitou <-function(
           dplyr::mutate(
             data = purrr::map(
               data,
-              .f = ~IPpackage::FUN_Citou(., DICIONARIO, varCitou, adc_labels = T)[["Resultado_Citou"]]
+              .f = ~IPpackage::FUN_Citou(., DICIONARIO, varCitou, adc_labels = F)[["Resultado_Citou"]]
             )
           ) %>%
           tidyr::unnest(data) %>%
@@ -314,8 +314,23 @@ FUN_cruzaCitou <-function(
             "varcol" = nome_var1
           ) %>%
           dplyr::relocate(varlin, varcol, codlin, codcol, n, n_peso, pct, pct_peso) %>%
+          dplyr::left_join(
+            y = DICIONARIO %>%
+              dplyr::filter(opcao_variavel == nome_varCitou) %>%
+              dplyr::mutate(
+                dplyr::across(
+                  opcao_cod,
+                  base::as.factor
+                )
+              ),
+            by = c(
+              "varlin" = "opcao_variavel",
+              "codlin" = "opcao_cod"
+            )
+          ) %>%
           dplyr::rename(
-            "titulolin" = stringr::str_c(nome_varCitou, "_label")
+            "lablin" = "opcao_label",
+            "titulolin" = "pergunta_enunciado"
           )
 
         if ( base::length(var1[[1]]) > 1 )
@@ -360,11 +375,7 @@ FUN_cruzaCitou <-function(
             "labcol" = "opcao_label",
             "titulocol" = "pergunta_enunciado"
           ) %>%
-          dplyr::relocate(labcol, .after = pct_peso) %>%
-          dplyr::mutate(
-            "lablin" = titulolin,
-            .before = labcol
-          ) %>%
+          dplyr::relocate(labcol, .after = lablin) %>%
           dplyr::mutate(
             codcol = base::as.factor(codcol)
           )
