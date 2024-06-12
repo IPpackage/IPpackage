@@ -11,6 +11,7 @@ Felipe_radar(
   values.radar = c("0\%", "10\%", "20\%", "30\%", "40\%", "50\%", "60\%", "70\%", "80\%",
     "90\%", "100\%"),
   axis.labels = colnames(plot.data)[-1],
+  axis.label.color = NULL,
   grid.min = 0,
   grid.um = 0.1,
   grid.dois = 0.2,
@@ -93,6 +94,8 @@ Felipe_radar(
 \item{values.radar}{= values.radar}
 
 \item{axis.labels}{= colnames(plot.data)[-1]}
+
+\item{axis.label.color}{= NULL}
 
 \item{grid.min}{= 0}
 
@@ -235,7 +238,7 @@ Felipe_radar(
 \item{graf.limits}{=c(2,2)}
 }
 \description{
-x
+Função para geração de gráficos do tipo 'radar'
 }
 \details{
 Consute o livro para mais detalhes e exemplos.
@@ -265,7 +268,4 @@ background.circle.colour="white",axis.label.size = 5)
 #library(magick)
 #magick::image_write(magick::image_transparent(magick::image_read("Felipe_radar.png"),
 #white'),"Felipe_radar.png")
-
-
-
 }
