@@ -144,11 +144,15 @@ FUN_cruzaMedia <- function(
       if ( c(tibble::tibble(x) %>% base::nrow()) == 0 )
       {# Start: Definindo as colunas iniciais
 
-        tibble::tibble(
+        x = tibble::tibble(
           "var1" = base::factor(),
           "variavel" = base::character(),
           "media" = base::numeric(),
           "media_peso" = base::numeric(),
+          "ma_p_splits_SupInf" = base::numeric(),
+          "ma_p_splits_Sup" = base::numeric(),
+          "ma_p_splits_Inf" = base::numeric(),
+          "ma_p_splits_SemOut" = base::numeric(),
           "n_base" = base::numeric(),
           "n_base_peso" = base::numeric(),
           "desvp" = base::numeric(),
@@ -187,6 +191,7 @@ FUN_cruzaMedia <- function(
         dplyr::select(
           varmedia, varcol, codcol,
           media, media_peso,
+          ma_p_splits_SupInf, ma_p_splits_Sup, ma_p_splits_Inf,ma_p_splits_SemOut,
           n_base, n_base_peso,
           desvp, desvp_peso,
           erro, erro_peso,
@@ -284,6 +289,7 @@ FUN_cruzaMedia <- function(
         dplyr::select(
           varmedia, varcol, codcol,
           media, media_peso,
+          ma_p_splits_SupInf, ma_p_splits_Sup, ma_p_splits_Inf,ma_p_splits_SemOut,
           n_base, n_base_peso,
           desvp, desvp_peso,
           erro, erro_peso,

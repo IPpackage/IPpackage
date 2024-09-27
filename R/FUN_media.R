@@ -5,6 +5,7 @@
 #'
 #' @param TABELA Banco de dados a ser analisado.
 #' @param lista_variaveis Lista das variáveis que serão pivotadas.
+#' @param debug Se debug=TRUE, printa cada iteração de variáveis.
 #'
 #' @details Consute o livro para mais detalhes e exemplos.
 #'
@@ -89,7 +90,8 @@
 
 FUN_media <- function(
     TABELA,
-    lista_variaveis
+    lista_variaveis,
+    debug = FALSE
 )
 {# Start: FUN_media
 
@@ -106,6 +108,13 @@ FUN_media <- function(
 
   for ( i in base::seq_along(out) )
   {# Start: Executando para cada variável
+
+    if(debug) {
+      vard_pad <- stringr::str_pad(string = i, side = "left", pad = "0", width = stringr::str_length(base::length(out)))
+      base::print(stringr::str_glue(
+        "[{vard_pad}/{base::length(out)}] {base::names(lista_variaveis[i])}: \t{stringr::str_c(lista_variaveis[[i]], collapse = ', ')}"
+      ))
+    }
 
     erro = 0
     TABELA2 = TABELA
@@ -230,6 +239,10 @@ FUN_media <- function(
               dplyr::summarise(
                 "media" = NA,
                 "media_peso" = NA,
+                "ma_p_splits_SupInf" = NA,
+                "ma_p_splits_Sup" = NA,
+                "ma_p_splits_Inf" = NA,
+                "ma_p_splits_SemOut" = NA,
                 "n_base" = base::nrow(tabela_base),
                 "n_base_peso" = base::sum(tabela_base$peso,na.rm=T),
                 "desvp" = stats::sd(x = .[[2]], na.rm = TRUE),
@@ -252,6 +265,30 @@ FUN_media <- function(
               dplyr::summarise(
                 "media" = base::mean(x = .[[2]], na.rm = TRUE),
                 "media_peso" = stats::weighted.mean(x = .[[2]], w = .[[1]], na.rm = TRUE),
+                "ma_p_splits_SupInf" = {
+                  resp <- .[[2]]
+                  qtl <- stats::quantile(resp, c(0.025, 0.975), na.rm = TRUE)
+                  dplyr::case_when(dplyr::between(resp, qtl[1], qtl[2]) ~ resp) %>%
+                    stats::weighted.mean(x = ., w = .data[["peso"]], na.rm = TRUE)
+                },
+                "ma_p_splits_Sup" = {
+                  resp <- .[[2]]
+                  qtl <- stats::quantile(resp, c(0.975), na.rm = TRUE)
+                  dplyr::case_when(resp <= qtl ~ resp) %>%
+                    stats::weighted.mean(x = ., w = .data[["peso"]], na.rm = TRUE)
+                },
+                "ma_p_splits_Inf" = {
+                  resp <- .[[2]]
+                  qtl <- stats::quantile(resp, c(0.025), na.rm = TRUE)
+                  dplyr::case_when(resp >= qtl ~ resp) %>%
+                    stats::weighted.mean(x = ., w = .data[["peso"]], na.rm = TRUE)
+                },
+                "ma_p_splits_SemOut" = {
+                  resp <- .[[2]]
+                  outliers <- graphics::boxplot(resp, plot = F)$out
+                  dplyr::case_when(resp %nin% outliers ~ resp) %>%
+                    stats::weighted.mean(x = ., w = .data[["peso"]], na.rm = TRUE)
+                },
                 "n_base" = base::nrow(tabela_base),
                 "n_base_peso" = base::sum(tabela_base$peso,na.rm=T),
                 "desvp" = stats::sd(x = .[[2]], na.rm = TRUE),

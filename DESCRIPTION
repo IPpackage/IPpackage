@@ -1,7 +1,7 @@
 Package: IPpackage
 Type: Package
 Title: IPpackage
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: c(person("Felipe", "Rocha", email = "felipe.rocha@innovarepesquisa.onmicrosoft.com", role = c("aut", "cre")),
              person("Rafael", "Peixoto", email = "peixoto.rafael@outlook.com", role = c("ctb") ))
 Description: Functions.

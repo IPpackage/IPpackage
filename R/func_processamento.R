@@ -657,7 +657,17 @@ func_processamento <- function(
 
     out$Base <- dfs %>%
       dplyr::select(splits, variavel, total, total_peso, n_base, n_base_peso, pct_base, pct_base_peso) %>%
-      dplyr::distinct()
+      dplyr::distinct() %>%
+      dplyr::left_join(
+        y = DICIONARIO %>%
+          dplyr::select(dplyr::any_of(c("opcao_variavel", "pergunta_enunciado", "descbase", "regrasbase"))) %>%
+          dplyr::distinct(),
+        by = dplyr::join_by(variavel == opcao_variavel)
+      ) %>%
+      dplyr::select(dplyr::any_of(c(
+        "splits", "variavel", "n_base", "n_base_peso", "pct_base", "pct_base_peso",
+        "regrasbase", "descbase", "pergunta_enunciado"
+      )))
 
     out$Labels <- dfs %>%
       dplyr::left_join(
@@ -975,7 +985,7 @@ func_processamento <- function(
   base::cat(
     "A Fun\u00E7\u00E3o inteira demorou (em minutos): ",
     finish_tempo[3] / 60,
-    "\n"
+    "\n\n"
   )
 
   # Warnings

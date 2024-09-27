@@ -10,6 +10,7 @@
 #' @param DICIONARIO Dicionário correspondente à TABELA.
 #' @param lista_variaveis Variáveis que serão pivotadas.
 #' @param adc_labels Se adc_labels=TRUE, adicionar uma coluna com o label.
+#' @param debug Se debug=TRUE, printa cada iteração de variáveis.
 #'
 #' @details Consute o livro para mais detalhes e exemplos.
 #'
@@ -129,7 +130,8 @@ FUN_Citou <- function(
   TABELA,
   DICIONARIO,
   lista_variaveis,
-  adc_labels = TRUE
+  adc_labels = TRUE,
+  debug = FALSE
 )
 {# Start: FUN_Citou
 
@@ -148,6 +150,13 @@ FUN_Citou <- function(
   # calcular a tabela de frequência
   for ( i in base::seq_along(out) )
     {# Start: Executando para cada variável
+
+    if(debug) {
+      vard_pad <- stringr::str_pad(string = i, side = "left", pad = "0", width = stringr::str_length(base::length(out)))
+      base::print(stringr::str_glue(
+        "[{vard_pad}/{base::length(out)}] {base::names(lista_variaveis[i])}: \t{stringr::str_c(lista_variaveis[[i]], collapse = ', ')}\n\n"
+      ))
+    }
 
     erro = 0
 
