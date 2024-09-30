@@ -358,7 +358,8 @@ func_processamento <- function(
 
   }# End: armazenar resultados e definições iniciais
 
-  base::cat("\n\n------------------------------------------------ ISOLADAS ------------------------------------------------\n\n")
+  # base::cat("\n\n------------------------------------------------ ISOLADAS ------------------------------------------------\n\n")
+  cli::cli_h1(text = cli::style_underline(" VARIÁVEIS - ISOLADAS "))
 
   # Abas "Freq" e "Base"
   if ( base::all(base::is.na(isoladas)) )
@@ -386,6 +387,7 @@ func_processamento <- function(
     )
 
     base::warning("Vari\u00E1veis 'isoladas' n\u00E3o fornecidas")
+    cli::symbol$line %>% cli::col_br_yellow() %>% base::cat(., "\n")
 
   } else {
 
@@ -451,10 +453,12 @@ func_processamento <- function(
           ~ tidyr::replace_na(., 0)
         )
       )
+    cli::symbol$tick %>% cli::col_br_green() %>% base::cat(., "\n")
 
   }# End: rodando as ISOLADAS
 
-  base::cat("\n\n-------------------------------------------------- MRG --------------------------------------------------\n\n")
+  # base::cat("\n\n-------------------------------------------------- MRG --------------------------------------------------\n\n")
+  cli::cli_h1(text = cli::style_underline(" VARIÁVEIS - MRG "))
 
   if ( base::all(base::is.na(mrg)) )
   {# Start: rodando MRG
@@ -481,6 +485,7 @@ func_processamento <- function(
     )
 
     base::warning("Vari\u00E1veis 'mrg' n\u00E3o fornecidas")
+    cli::symbol$line %>% cli::col_br_yellow() %>% base::cat(., "\n")
 
   } else {
 
@@ -546,10 +551,12 @@ func_processamento <- function(
           ~ tidyr::replace_na(., 0)
         )
       )
+    cli::symbol$tick %>% cli::col_br_green() %>% base::cat(., "\n")
 
   }# End: rodando MRG
 
-  base::cat("\n\n-------------------------------------------------- CITOU --------------------------------------------------\n\n")
+  # base::cat("\n\n-------------------------------------------------- CITOU --------------------------------------------------\n\n")
+  cli::cli_h1(text = cli::style_underline(" VARIÁVEIS - CITOU "))
 
   if ( base::all(base::is.na(citou)) )
   {# Start: CITOU
@@ -576,6 +583,7 @@ func_processamento <- function(
     )
 
     base::warning("Vari\u00E1veis 'citou' n\u00E3o fornecidas")
+    cli::symbol$line %>% cli::col_br_yellow() %>% base::cat(., "\n")
 
   } else {
 
@@ -641,6 +649,7 @@ func_processamento <- function(
           ~ tidyr::replace_na(., 0)
         )
       )
+    cli::symbol$tick %>% cli::col_br_green() %>% base::cat(., "\n")
 
   }# End: CITOU
 
@@ -690,7 +699,8 @@ func_processamento <- function(
 
   }# End: ajustando saída de CITOU
 
-  base::cat("\n\n-------------------------------------------------- MEDIAS --------------------------------------------------\n\n")
+  # base::cat("\n\n-------------------------------------------------- MEDIAS --------------------------------------------------\n\n")
+  cli::cli_h1(text = cli::style_underline(" VARIÁVEIS - MEDIAS "))
 
   # Aba "Medias"
   if ( base::all(base::is.na(medias)) )
@@ -733,6 +743,7 @@ func_processamento <- function(
     )
 
     base::warning("Vari\u00E1vel 'media' n\u00E3o fornecidas")
+    cli::symbol$line %>% cli::col_br_yellow() %>% base::cat(., "\n")
 
   } else {
 
@@ -777,11 +788,14 @@ func_processamento <- function(
       tidyr::unnest(res) %>%
       base::data.frame()
 
+    cli::symbol$tick %>% cli::col_br_green() %>% base::cat(., "\n")
+
   }# End: MEDIAS
 
   out$Medias <- medias_normal
 
-  base::cat("\n\n-------------------------------------------------- CRUZAMENTOS --------------------------------------------------\n\n")
+  # base::cat("\n\n-------------------------------------------------- CRUZAMENTOS - ISOLADAS ----------------------------------------\n\n")
+  cli::cli_h1(text = cli::style_underline(" CRUZAMENTOS - ISOLADAS "))
 
   TABELA_splits_CRUZAMENTOS <- TABELA_splits %>%
     dplyr::filter(
@@ -807,6 +821,7 @@ func_processamento <- function(
     )
 
     base::warning("Vari\u00E1veis 'cruza_isoladas' n\u00E3o fornecidas")
+    cli::symbol$line %>% cli::col_br_yellow() %>% base::cat(., "\n")
 
   } else {
 
@@ -835,7 +850,11 @@ func_processamento <- function(
 
     }# End: rodando - Isoladas
 
+    cli::symbol$tick %>% cli::col_br_green() %>% base::cat(., "\n")
   }# Start: rodando Cruzamentos - Isoladas
+
+  # base::cat("\n\n-------------------------------------------------- CRUZAMENTOS - MRG -------------------------------------------\n\n")
+  cli::cli_h1(text = cli::style_underline(" CRUZAMENTOS - MRG "))
 
   if ( base::all(base::is.na(cruza_mrg)) )
   {# Start: rodando Cruzamentos - MRG
@@ -853,6 +872,7 @@ func_processamento <- function(
     )
 
     base::warning("Vari\u00E1veis 'cruza_mrg' n\u00E3o fornecidas")
+    cli::symbol$line %>% cli::col_br_yellow() %>% base::cat(., "\n")
 
   } else {
 
@@ -881,7 +901,11 @@ func_processamento <- function(
 
     }# End: rodando - MRG
 
+    cli::symbol$tick %>% cli::col_br_green() %>% base::cat(., "\n")
   }# End: rodando Cruzamentos - MRG
+
+  # base::cat("\n\n-------------------------------------------------- CRUZAMENTOS - CITOU -----------------------------------------\n\n")
+  cli::cli_h1(text = cli::style_underline(" CRUZAMENTOS - CITOU "))
 
   if ( base::all(base::is.na(cruza_citou)) )
   {# Start: rodando Cruzamentos - Citou
@@ -890,6 +914,7 @@ func_processamento <- function(
       codcol = base::factor(), n = base::numeric(), n_peso = base::numeric(), pct = base::numeric(), pct_peso = base::numeric()
     )
     base::warning("Vari\u00E1veis 'cruza_citou' n\u00E3o fornecidas")
+    cli::symbol$line %>% cli::col_br_yellow() %>% base::cat(., "\n")
   } else {
 
     df_cruzacitou <- base::vector(
@@ -916,6 +941,7 @@ func_processamento <- function(
 
     }# End: rodando - Citou
 
+    cli::symbol$tick %>% cli::col_br_green() %>% base::cat(., "\n")
   }# End: rodando Cruzamentos - Citou
 
   out$Cruz <- dplyr::bind_rows(
@@ -923,6 +949,9 @@ func_processamento <- function(
     df_cruzamrg,
     df_cruzacitou
   )
+
+  # base::cat("\n\n-------------------------------------------------- CRUZAMENTOS - MEDIAS -----------------------------------------\n\n")
+  cli::cli_h1(text = cli::style_underline(" CRUZAMENTOS - MEDIAS "))
 
   if ( base::all(base::is.na(cruza_media)) )
   {# Start: rodando Cruzamentos - Médias
@@ -940,6 +969,7 @@ func_processamento <- function(
     )
 
     base::warning("Vari\u00E1veis 'cruza_media' n\u00E3o fornecidas")
+    cli::symbol$line %>% cli::col_br_yellow() %>% base::cat(., "\n")
 
   } else {
 
@@ -948,6 +978,11 @@ func_processamento <- function(
       length = base::length(cruza_media)
     )
 
+    cli::cli_progress_bar(
+      format = "Cruza Medias: {cli::pb_bar} {cli::pb_percent} ({cli::pb_current}/{cli::pb_total}) | [{cli::pb_elapsed_clock}] | ETA: {cli::pb_eta}",
+      total = base::length(cruza_media),
+      clear = FALSE,
+    )
     for ( i in base::seq_along(df_cruzamedia) )
     {# Start: rodando - Médias
 
@@ -964,8 +999,11 @@ func_processamento <- function(
         ) %>%
         tidyr::unnest(data)
 
+      cli::cli_progress_update()
+
     }# End: rodando - Médias
 
+    cli::symbol$tick %>% cli::col_br_green() %>% base::cat(., "\n")
   }# End: rodando Cruzamentos - Médias
 
   out$Cruz_M <- dplyr::bind_rows(df_cruzamedia)
@@ -982,14 +1020,28 @@ func_processamento <- function(
 
   # Tempo
   finish_tempo <- ( base::proc.time() - start_tempo )
-  base::cat(
-    "A Fun\u00E7\u00E3o inteira demorou (em minutos): ",
-    finish_tempo[3] / 60,
-    "\n\n"
-  )
+  # base::cat("A Fun\u00E7\u00E3o inteira demorou (em minutos): ", finish_tempo[3] / 60, "\n\n")
+  periodo_segundos <- lubridate::seconds_to_period(finish_tempo[[3]])
+  cli::boxx(
+    label = cli::col_br_white(c(
+      "Este Processamento inteiro demorou:",
+      base::sprintf(
+        "%02d:%02d:%02d",
+        periodo_segundos@hour,
+        periodo_segundos@minute,
+        base::floor(lubridate::second(periodo_segundos))
+      )
+    )),
+    background_col = "darkblue",
+    padding = c(0, 10, 0, 10),
+    margin = 0,
+    border_style = "none",
+    float = "center",
+    align = "center"
+  ) %>% base::print()
+  cat("\n")
 
-  # Warnings
-  base::warning("Vari\u00E1veis 'cruza_media' n\u00E3o fornecidas")
+
   base::return(out)
 
 }# End: func_processamento
