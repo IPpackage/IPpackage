@@ -168,6 +168,7 @@ FUN_cruzaMRG <- function(
     dplyr::left_join(
       y = DICIONARIO %>%
         dplyr::filter(opcao_variavel == var_naofecha) %>%
+        dplyr::select(opcao_cod, opcao_label, opcao_variavel, pergunta_enunciado) %>%
         dplyr::mutate(dplyr::across(opcao_cod, as.factor)),
       by = c("varlin" = "opcao_variavel", "codlin" = "opcao_cod")
     ) %>%
@@ -178,6 +179,7 @@ FUN_cruzaMRG <- function(
     dplyr::left_join(
       y = DICIONARIO %>%
         dplyr::filter(opcao_variavel == var_fecha) %>%
+        dplyr::select(opcao_cod, opcao_label, opcao_variavel, pergunta_enunciado) %>%
         dplyr::mutate(dplyr::across(opcao_cod, base::as.factor)),
       by = c("varcol" = "opcao_variavel", "codcol" = "opcao_cod")
     ) %>%

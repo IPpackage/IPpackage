@@ -317,6 +317,7 @@ FUN_cruzaCitou <-function(
           dplyr::left_join(
             y = DICIONARIO %>%
               dplyr::filter(opcao_variavel == nome_varCitou) %>%
+              dplyr::select(opcao_cod, opcao_label, opcao_variavel, pergunta_enunciado) %>%
               dplyr::mutate(
                 dplyr::across(
                   opcao_cod,
@@ -360,6 +361,7 @@ FUN_cruzaCitou <-function(
           dplyr::left_join(
           y = DICIONARIO %>%
             dplyr::filter(opcao_variavel == nome_var1) %>%
+            dplyr::select(opcao_cod, opcao_label, opcao_variavel, pergunta_enunciado) %>%
             dplyr::mutate(
               dplyr::across(
                 opcao_cod,
@@ -483,6 +485,7 @@ FUN_cruzaCitou <-function(
         dplyr::left_join(
           y = DICIONARIO %>%
             dplyr::filter(opcao_variavel == nome_var1) %>%
+            dplyr::select(opcao_cod, opcao_label, opcao_variavel, pergunta_enunciado) %>%
             dplyr::mutate(
               dplyr::across(
                 opcao_cod, base::as.factor
@@ -500,6 +503,7 @@ FUN_cruzaCitou <-function(
         dplyr::left_join(
           y = DICIONARIO %>%
             dplyr::filter(opcao_variavel == nome_varCitou) %>%
+            dplyr::select(opcao_cod, opcao_label, opcao_variavel, pergunta_enunciado) %>%
             dplyr::mutate(
               dplyr::across(
                 opcao_cod,
@@ -531,6 +535,7 @@ FUN_cruzaCitou <-function(
         dplyr::left_join(
           DICIONARIO %>%
             dplyr::filter(opcao_variavel %in% c(nome_varCitou) ) %>%
+            dplyr::select(opcao_cod, opcao_label, opcao_variavel, pergunta_enunciado) %>%
             dplyr::select(-c(opcao_cod, opcao_label)) %>%
             base::unique() %>%
             dplyr::rename(titulocol = pergunta_enunciado),
@@ -539,6 +544,7 @@ FUN_cruzaCitou <-function(
         dplyr::left_join(
           DICIONARIO %>%
             dplyr::filter(opcao_variavel %in% c(varCitou[[1]]) ) %>%
+            dplyr::select(opcao_cod, opcao_label, opcao_variavel, pergunta_enunciado) %>%
             dplyr::select(-c(opcao_cod, opcao_label)) %>%
             base::unique() %>%
             dplyr::rename(labcol = pergunta_enunciado),

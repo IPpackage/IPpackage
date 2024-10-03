@@ -202,6 +202,7 @@ FUN_cruzaMedia <- function(
         dplyr::left_join(
           y = DICIONARIO %>%
             dplyr::filter(opcao_variavel == var1) %>%
+            dplyr::select(opcao_cod, opcao_label, opcao_variavel, pergunta_enunciado) %>%
             dplyr::mutate(
               dplyr::across(
                 opcao_cod,
@@ -300,6 +301,7 @@ FUN_cruzaMedia <- function(
         dplyr::left_join(
           y = DICIONARIO %>%
             dplyr::filter(opcao_variavel == base::names(var1)) %>%
+            dplyr::select(opcao_cod, opcao_label, opcao_variavel, pergunta_enunciado) %>%
             dplyr::mutate(dplyr::across(opcao_cod, as.factor)),
           by = c(
             "varcol" = "opcao_variavel",
