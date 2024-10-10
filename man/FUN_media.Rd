@@ -4,12 +4,14 @@
 \alias{FUN_media}
 \title{FUN_media}
 \usage{
-FUN_media(TABELA, lista_variaveis)
+FUN_media(TABELA, lista_variaveis, debug = FALSE)
 }
 \arguments{
 \item{TABELA}{Banco de dados a ser analisado.}
 
 \item{lista_variaveis}{Lista das variáveis que serão pivotadas.}
+
+\item{debug}{Se debug=TRUE, printa cada iteração de variáveis.}
 }
 \description{
 Pivota e depois calcula a média (ponderada e não ponderada) das variáveis indicadas em 'lista_variaveis'.

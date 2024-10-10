@@ -19,11 +19,14 @@
 #' @details Consute o livro para mais detalhes e exemplos.
 #'
 #' @import dplyr
+#' @import cli
 #' @importFrom tidyr unnest
 #' @importFrom tidyr replace_na
 #' @importFrom purrr map
 #' @importFrom purrr map2
 #' @importFrom purrr pluck
+#' @importFrom lubridate seconds_to_period
+#' @importFrom lubridate second
 #'
 #' @examples
 #'
@@ -359,7 +362,7 @@ func_processamento <- function(
   }# End: armazenar resultados e definições iniciais
 
   # base::cat("\n\n------------------------------------------------ ISOLADAS ------------------------------------------------\n\n")
-  cli::cli_h1(text = cli::style_underline(" VARIÁVEIS - ISOLADAS "))
+  cli::cli_h1(text = cli::style_underline(" VARI\u00C1VEIS - ISOLADAS "))
 
   # Abas "Freq" e "Base"
   if ( base::all(base::is.na(isoladas)) )
@@ -458,7 +461,7 @@ func_processamento <- function(
   }# End: rodando as ISOLADAS
 
   # base::cat("\n\n-------------------------------------------------- MRG --------------------------------------------------\n\n")
-  cli::cli_h1(text = cli::style_underline(" VARIÁVEIS - MRG "))
+  cli::cli_h1(text = cli::style_underline(" VARI\u00C1VEIS - MRG "))
 
   if ( base::all(base::is.na(mrg)) )
   {# Start: rodando MRG
@@ -556,7 +559,7 @@ func_processamento <- function(
   }# End: rodando MRG
 
   # base::cat("\n\n-------------------------------------------------- CITOU --------------------------------------------------\n\n")
-  cli::cli_h1(text = cli::style_underline(" VARIÁVEIS - CITOU "))
+  cli::cli_h1(text = cli::style_underline(" VARI\u00C1VEIS - CITOU "))
 
   if ( base::all(base::is.na(citou)) )
   {# Start: CITOU
@@ -700,7 +703,7 @@ func_processamento <- function(
   }# End: ajustando saída de CITOU
 
   # base::cat("\n\n-------------------------------------------------- MEDIAS --------------------------------------------------\n\n")
-  cli::cli_h1(text = cli::style_underline(" VARIÁVEIS - MEDIAS "))
+  cli::cli_h1(text = cli::style_underline(" VARI\u00C1VEIS - M\u00C9DIAS "))
 
   # Aba "Medias"
   if ( base::all(base::is.na(medias)) )
@@ -742,7 +745,7 @@ func_processamento <- function(
       log = base::list()
     )
 
-    base::warning("Vari\u00E1vel 'media' n\u00E3o fornecidas")
+    base::warning("Vari\u00E1vel 'm\u00E9dia' n\u00E3o fornecidas")
     cli::symbol$line %>% cli::col_br_yellow() %>% base::cat(., "\n")
 
   } else {
@@ -763,8 +766,8 @@ func_processamento <- function(
           },
           .progress = base::list(
             clear = FALSE,
-            name = "MEDIAS",
-            format = "Medias: {cli::pb_bar} {cli::pb_percent} ({cli::pb_current}/{cli::pb_total}) | [{cli::pb_elapsed_clock}] | ETA: {cli::pb_eta}"
+            name = "M\u00C9DIAS",
+            format = "M\u00E9dias: {cli::pb_bar} {cli::pb_percent} ({cli::pb_current}/{cli::pb_total}) | [{cli::pb_elapsed_clock}] | ETA: {cli::pb_eta}"
           )
         )) %>%
       dplyr::mutate(
@@ -951,7 +954,7 @@ func_processamento <- function(
   )
 
   # base::cat("\n\n-------------------------------------------------- CRUZAMENTOS - MEDIAS -----------------------------------------\n\n")
-  cli::cli_h1(text = cli::style_underline(" CRUZAMENTOS - MEDIAS "))
+  cli::cli_h1(text = cli::style_underline(" CRUZAMENTOS - M\u00C9DIAS "))
 
   if ( base::all(base::is.na(cruza_media)) )
   {# Start: rodando Cruzamentos - Médias
@@ -979,7 +982,7 @@ func_processamento <- function(
     )
 
     cli::cli_progress_bar(
-      format = "Cruza Medias: {cli::pb_bar} {cli::pb_percent} ({cli::pb_current}/{cli::pb_total}) | [{cli::pb_elapsed_clock}] | ETA: {cli::pb_eta}",
+      format = "Cruza M\u00E9dias: {cli::pb_bar} {cli::pb_percent} ({cli::pb_current}/{cli::pb_total}) | [{cli::pb_elapsed_clock}] | ETA: {cli::pb_eta}",
       total = base::length(cruza_media),
       clear = FALSE,
     )

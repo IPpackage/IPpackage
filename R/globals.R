@@ -7,6 +7,10 @@ utils::globalVariables(
     , 'varlin', 'varcol', 'codlin', 'codcol', 'pct', 'pct_peso', 'labcol', 'lablin'
     , 'data', 'variavel', 'varmedia', 'media', 'media_peso', 'erro', 'erro_peso',
     'Q1', 'mediana', 'Q3', 'cv', 'codigo', 'titulolin', 'titulocol', 'codigo',
-    'total', 'total_peso', 'res', 'codigo', 'total', 'total_peso'
+    'total', 'total_peso', 'res', 'codigo', 'total', 'total_peso',
+    'sheet', 'ordem', 'armazenas', 'v', 'antes', 'depois', 'ordem', 'ordem_var',
+    'armazenas', 'v', 'antes', 'depois', 'ma_p_splits_SupInf', 'ma_p_splits_Sup',
+    'ma_p_splits_Inf', 'ma_p_splits_SemOut'
+
     ))
 

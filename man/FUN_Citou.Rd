@@ -4,7 +4,13 @@
 \alias{FUN_Citou}
 \title{FUN_Citou}
 \usage{
-FUN_Citou(TABELA, DICIONARIO, lista_variaveis, adc_labels = TRUE)
+FUN_Citou(
+  TABELA,
+  DICIONARIO,
+  lista_variaveis,
+  adc_labels = TRUE,
+  debug = FALSE
+)
 }
 \arguments{
 \item{TABELA}{Banco de dados a ser analisado.}
@@ -14,6 +20,8 @@ FUN_Citou(TABELA, DICIONARIO, lista_variaveis, adc_labels = TRUE)
 \item{lista_variaveis}{Variáveis que serão pivotadas.}
 
 \item{adc_labels}{Se adc_labels=TRUE, adicionar uma coluna com o label.}
+
+\item{debug}{Se debug=TRUE, printa cada iteração de variáveis.}
 }
 \description{
 Pivota e depois calcula a frequência simples (ponderada e não ponderada)

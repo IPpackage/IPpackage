@@ -4,7 +4,7 @@
 \alias{FUN_isoladas}
 \title{FUN_isoladas}
 \usage{
-FUN_isoladas(TABELA, DICIONARIO, variaveis, adc_labels = TRUE)
+FUN_isoladas(TABELA, DICIONARIO, variaveis, adc_labels = TRUE, debug = FALSE)
 }
 \arguments{
 \item{TABELA}{Banco de dados a ser analisado.}
@@ -14,6 +14,8 @@ FUN_isoladas(TABELA, DICIONARIO, variaveis, adc_labels = TRUE)
 \item{variaveis}{Variáveis para as quais as frequências devem ser calculadas (vetor).}
 
 \item{adc_labels}{Se adc_labels=TRUE, adicionar uma coluna com o label.}
+
+\item{debug}{Se debug=TRUE, printa cada iteração de variáveis.}
 }
 \description{
 Determinar a frequência simples das 'variaveis', tanto ponderada quanto não ponderada.
