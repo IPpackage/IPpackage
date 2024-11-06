@@ -369,19 +369,19 @@ func_processamento <- function(
   {# Start: rodando as ISOLADAS
 
     df_isoladas <- tibble::tibble(
-      splits = base::character(),
-      variavel = base::character(),
-      codigo = base::character(),
-      n = base::numeric(),
-      n_peso = base::numeric(),
-      pct = base::numeric(),
-      pct_peso = base::numeric(),
-      total = base::numeric(),
-      total_peso = base::numeric(),
-      n_base = base::numeric(),
-      n_base_peso = base::numeric(),
-      pct_base = base::numeric(),
-      pct_base_peso = base::numeric()
+      "splits"        = base::character(),
+      "variavel"      = base::character(),
+      "codigo"        = base::character(),
+      "n"             = base::numeric(),
+      "n_peso"        = base::numeric(),
+      "pct"           = base::numeric(),
+      "pct_peso"      = base::numeric(),
+      "total"         = base::numeric(),
+      "total_peso"    = base::numeric(),
+      "n_base"        = base::numeric(),
+      "n_base_peso"   = base::numeric(),
+      "pct_base"      = base::numeric(),
+      "pct_base_peso" = base::numeric()
     )
 
     log_isoladas <- tibble::tibble(
@@ -467,19 +467,19 @@ func_processamento <- function(
   {# Start: rodando MRG
 
     df_mrg <- tibble::tibble(
-      splits = base::character(),
-      variavel = base::character(),
-      codigo = base::character(),
-      n = base::numeric(),
-      n_peso = base::numeric(),
-      pct = base::numeric(),
-      pct_peso = base::numeric(),
-      total = base::numeric(),
-      total_peso = base::numeric(),
-      n_base = base::numeric(),
-      n_base_peso = base::numeric(),
-      pct_base = base::numeric(),
-      pct_base_peso = base::numeric()
+      "splits"        = base::character(),
+      "variavel"      = base::character(),
+      "codigo"        = base::character(),
+      "n"             = base::numeric(),
+      "n_peso"        = base::numeric(),
+      "pct"           = base::numeric(),
+      "pct_peso"      = base::numeric(),
+      "total"         = base::numeric(),
+      "total_peso"    = base::numeric(),
+      "n_base"        = base::numeric(),
+      "n_base_peso"   = base::numeric(),
+      "pct_base"      = base::numeric(),
+      "pct_base_peso" = base::numeric()
     )
 
     log_mrg <- tibble::tibble(
@@ -565,19 +565,19 @@ func_processamento <- function(
   {# Start: CITOU
 
     df_citou <- tibble::tibble(
-      splits = base::character(),
-      variavel = base::character(),
-      codigo = base::character(),
-      n = base::numeric(),
-      n_peso = base::numeric(),
-      pct = base::numeric(),
-      pct_peso = base::numeric(),
-      total = base::numeric(),
-      total_peso = base::numeric(),
-      n_base = base::numeric(),
-      n_base_peso = base::numeric(),
-      pct_base = base::numeric(),
-      pct_base_peso = base::numeric()
+      "splits"        = base::character(),
+      "variavel"      = base::character(),
+      "codigo"        = base::character(),
+      "n"             = base::numeric(),
+      "n_peso"        = base::numeric(),
+      "pct"           = base::numeric(),
+      "pct_peso"      = base::numeric(),
+      "total"         = base::numeric(),
+      "total_peso"    = base::numeric(),
+      "n_base"        = base::numeric(),
+      "n_base_peso"   = base::numeric(),
+      "pct_base"      = base::numeric(),
+      "pct_base_peso" = base::numeric()
     )
 
     log_citou <- tibble::tibble(
@@ -710,16 +710,26 @@ func_processamento <- function(
   {# Start: MEDIAS
 
     medias_normal <- tibble::tibble(
-      splits = base::character(),
-      variavel = base::character(),
-      media = base::numeric(),
-      media_peso = base::numeric(),
-      n = base::numeric(),
-      n_peso = base::numeric(),
-      desvp = base::numeric(),
-      desvp_peso = base::numeric(),
-      erro = base::numeric(),
-      erro_peso = base::numeric()
+      "splits"             = base::character(),
+      "variavel"           = base::character(),
+      "media"              = base::numeric(),
+      "media_peso"         = base::numeric(),
+      "ma_p_splits_SupInf" = base::numeric(),
+      "ma_p_splits_Sup"    = base::numeric(),
+      "ma_p_splits_Inf"    = base::numeric(),
+      "ma_p_splits_SemOut" = base::numeric(),
+      "n_base"             = base::numeric(),
+      "n_base_peso"        = base::numeric(),
+      "desvp"              = base::numeric(),
+      "desvp_peso"         = base::numeric(),
+      "erro"               = base::numeric(),
+      "erro_peso"          = base::numeric(),
+      "min"                = base::numeric(),
+      "Q1"                 = base::numeric(),
+      "mediana"            = base::numeric(),
+      "Q3"                 = base::numeric(),
+      "max"                = base::numeric(),
+      "cv"                 = base::numeric()
     )
 
     medias_aparadas <- tibble::tibble(
@@ -812,15 +822,15 @@ func_processamento <- function(
   {# Start: rodando Cruzamentos - Isoladas
 
     df_cruzaisoladas <- tibble::tibble(
-      splits = base::character(),
-      varlin = base::character(),
-      varcol = base::character(),
-      codlin = base::factor(),
-      codcol = base::factor(),
-      n = base::numeric(),
-      n_peso = base::numeric(),
-      pct = base::numeric(),
-      pct_peso = base::numeric()
+      "splits"   = base::character(),
+      "varlin"   = base::character(),
+      "varcol"   = base::character(),
+      "codlin"   = base::factor(),
+      "codcol"   = base::factor(),
+      "n"        = base::numeric(),
+      "n_peso"   = base::numeric(),
+      "pct"      = base::numeric(),
+      "pct_peso" = base::numeric()
     )
 
     base::warning("Vari\u00E1veis 'cruza_isoladas' n\u00E3o fornecidas")
@@ -863,15 +873,15 @@ func_processamento <- function(
   {# Start: rodando Cruzamentos - MRG
 
     df_cruzamrg <- tibble::tibble(
-      splits = base::character(),
-      varlin = base::character(),
-      varcol = base::character(),
-      codlin = base::factor(),
-      codcol = base::factor(),
-      n = base::numeric(),
-      n_peso = base::numeric(),
-      pct = base::numeric(),
-      pct_peso = base::numeric()
+      "splits"   = base::character(),
+      "varlin"   = base::character(),
+      "varcol"   = base::character(),
+      "codlin"   = base::factor(),
+      "codcol"   = base::factor(),
+      "n"        = base::numeric(),
+      "n_peso"   = base::numeric(),
+      "pct"      = base::numeric(),
+      "pct_peso" = base::numeric()
     )
 
     base::warning("Vari\u00E1veis 'cruza_mrg' n\u00E3o fornecidas")
@@ -913,8 +923,15 @@ func_processamento <- function(
   if ( base::all(base::is.na(cruza_citou)) )
   {# Start: rodando Cruzamentos - Citou
     df_cruzacitou <- tibble::tibble(
-      splits = base::character(), varlin = base::character(), varcol = base::character(), codlin = base::factor(),
-      codcol = base::factor(), n = base::numeric(), n_peso = base::numeric(), pct = base::numeric(), pct_peso = base::numeric()
+      "splits"   = base::character(),
+      "varlin"   = base::character(),
+      "varcol"   = base::character(),
+      "codlin"   = base::factor(),
+      "codcol"   = base::factor(),
+      "n"        = base::numeric(),
+      "n_peso"   = base::numeric(),
+      "pct"      = base::numeric(),
+      "pct_peso" = base::numeric()
     )
     base::warning("Vari\u00E1veis 'cruza_citou' n\u00E3o fornecidas")
     cli::symbol$line %>% cli::col_br_yellow() %>% base::cat(., "\n")
@@ -960,15 +977,28 @@ func_processamento <- function(
   {# Start: rodando Cruzamentos - Médias
 
     df_cruzamedia <- tibble::tibble(
-      splits = base::character(),
-      varlin = base::character(),
-      varcol = base::character(),
-      codlin = base::factor(),
-      codcol = base::factor(),
-      n = base::numeric(),
-      n_peso = base::numeric(),
-      pct = base::numeric(),
-      pct_peso = base::numeric()
+      "splits"             = base::character(),
+      "varmedia"           = base::character(),
+      "varcol"             = base::character(),
+      "codcol"             = base::factor(),
+      "media"              = base::numeric(),
+      "media_peso"         = base::numeric(),
+      "ma_p_splits_SupInf" = base::numeric(),
+      "ma_p_splits_Sup"    = base::numeric(),
+      "ma_p_splits_Inf"    = base::numeric(),
+      "ma_p_splits_SemOut" = base::numeric(),
+      "n_base"             = base::numeric(),
+      "n_base_peso"        = base::numeric(),
+      "desvp"              = base::numeric(),
+      "desvp_peso"         = base::numeric(),
+      "erro"               = base::numeric(),
+      "erro_peso"          = base::numeric(),
+      "min"                = base::numeric(),
+      "Q1"                 = base::numeric(),
+      "mediana"            = base::numeric(),
+      "Q3"                 = base::numeric(),
+      "max"                = base::numeric(),
+      "cv"                 = base::numeric()
     )
 
     base::warning("Vari\u00E1veis 'cruza_media' n\u00E3o fornecidas")
